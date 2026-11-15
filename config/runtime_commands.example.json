@@ -1,0 +1,20 @@
+{
+  "purpose": "Illustrative gateway messages; encode each entry separately using SLIP/ATR/CRC",
+  "instructions": [
+    "Replace target_boot_id with the boot_id actually received in HELLO.",
+    "Reserve fresh session, batch, part and command IDs in the real gateway.",
+    "Each gateway transmission has an increasing ATR header seq; never put seq inside serial JSON.",
+    "Send heartbeats once per second while running the sequence.",
+    "Wait for validated config completion and arming before sending a permit.",
+    "Send report ACKs only after durable recording. Confirm PRODUCTION_FINISHED separately."
+  ],
+  "messages": [
+    {"schema_version": 1, "msg_type": "SYNC_SESSION", "device_id": 0, "session_id": 9, "cmd_id": 100, "target_device_id": 1, "target_boot_id": 7},
+    {"schema_version": 1, "msg_type": "SET_PRODUCTION_CONFIG", "device_id": 0, "session_id": 9, "cmd_id": 101, "config_version": 1, "cycle_time_ms": 1000},
+    {"schema_version": 1, "msg_type": "START_PRODUCTION", "device_id": 0, "session_id": 9, "cmd_id": 102, "batch_id": 1, "target_parts": 1},
+    {"schema_version": 1, "msg_type": "HEARTBEAT", "device_id": 0, "session_id": 9, "heartbeat_seq": 0, "device_state": "BUSY"},
+    {"schema_version": 1, "msg_type": "PRODUCTION_PERMIT", "device_id": 0, "session_id": 9, "cmd_id": 103, "batch_id": 1, "part_id": 15, "config_version": 1},
+    {"schema_version": 1, "msg_type": "DELIVERY_ACK", "device_id": 0, "session_id": 9, "cmd_id": 103, "ref_msg_type": "PART_PRODUCED"},
+    {"schema_version": 1, "msg_type": "DELIVERY_ACK", "device_id": 0, "session_id": 9, "cmd_id": 102, "ref_msg_type": "PRODUCTION_FINISHED"}
+  ]
+}
