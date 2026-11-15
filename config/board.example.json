@@ -1,0 +1,15 @@
+{
+  "purpose": "Setup template, not a message sent to the ESP32",
+  "arduino_board_package": "esp32 by Espressif Systems",
+  "tested_core_version": "3.3.3",
+  "tested_fqbn": "esp32:esp32:esp32",
+  "physical_board_model": "FILL IN AFTER CHECKING THE BOARD",
+  "serial_port": "FILL IN THE ACTUAL COM PORT",
+  "serial_baud": 115200,
+  "serial_format": "8N1",
+  "device_id": 1,
+  "gateway_device_id": 0,
+  "core_debug_level": "None",
+  "additional_arduino_libraries": [],
+  "note": "Protocol constants live in StationConfig.h. Cycle time and part IDs are runtime gateway inputs."
+}
