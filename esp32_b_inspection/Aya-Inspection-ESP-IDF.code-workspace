@@ -1,0 +1,43 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "idf.customExtraVars": {
+      "PYTHONUTF8": "1"
+    },
+    "terminal.integrated.env.windows": {
+      "PYTHONUTF8": "1"
+    },
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "python.testing.unittestEnabled": true,
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestArgs": [
+      "-v",
+      "-s",
+      "tools",
+      "-p",
+      "test_tools.py"
+    ],
+    "python.defaultInterpreterPath": "python",
+    "idf.buildPath": "${workspaceFolder}/build",
+    "idf.monitorBaudRate": "115200",
+    "idf.flashType": "UART",
+    "files.exclude": {
+      "**/__pycache__": true
+    },
+    "search.exclude": {
+      "build/**": true,
+      "managed_components/**": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "espressif.esp-idf-extension",
+      "ms-vscode.cpptools",
+      "ms-python.python"
+    ]
+  }
+}

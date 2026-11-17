@@ -1,0 +1,21 @@
+ESP-IDF v6.1.1 / classic ESP32 / link-time size summary
+
+Region          Used bytes    Remaining bytes    Region total bytes
+Flash code          601058
+Flash data          110148
+DRAM                 87855              92881                180736
+IRAM                 87719              43353                131072
+RTC SLOW                64               8128                  8192
+
+DRAM .bss: 69864 bytes
+DRAM .data: 17991 bytes
+Total image sections: 816956 bytes
+Padded application .bin: 817072 bytes
+Application partition: 1048576 bytes
+Application partition remaining: 231504 bytes (about 22%)
+
+These are compiler/linker measurements, not runtime heap measurements.
+Reserved memory and application configuration affect the available regions.
+
+Reproduce in the configured ESP-IDF terminal:
+idf.py -B C:/Espressif/builds/mct431_aya_inspection size
