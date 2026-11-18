@@ -1,0 +1,2 @@
+batch_id,operating_mode,target_parts,produced_total,inspected_total,accepted_total,rejected_total,batch_status,start_cmd_id,production_finished,started_at,finished_at,abortion_reason
+33,PRODUCTION,10,4,0,0,0,ABORTED,2732,0,2026-11-17T17:54:31.090+00:00,2026-11-17T17:54:36.368+00:00,"ESP32 B: RETRY_EXHAUSTED: {'schema_version': 1, 'msg_type': 'INSPECT_PART', 'device_id': 0, 'session_id': 2186, 'batch_id': 33, 'part_id': 272, 'job_id': 272, 'config_version': 48}"

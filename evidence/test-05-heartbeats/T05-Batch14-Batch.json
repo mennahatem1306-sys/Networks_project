@@ -1,0 +1,15 @@
+{
+  "batch_id": 14,
+  "operating_mode": "PRODUCTION",
+  "target_parts": 20,
+  "produced_total": 11,
+  "inspected_total": 5,
+  "accepted_total": 3,
+  "rejected_total": 2,
+  "batch_status": "ABORTED",
+  "start_cmd_id": 2334,
+  "production_finished": 0,
+  "started_at": "2026-11-17T15:40:23.756+00:00",
+  "finished_at": "2026-11-17T15:40:34.386+00:00",
+  "abortion_reason": "ESP32 B: Handshake or heartbeat timed out"
+}

@@ -1,0 +1,165 @@
+2026-11-17T18:07:14.709+00:00 I (8041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":4,"boot_id":31,"device_state":"SAFE_IDLE","seq":8}
+2026-11-17T18:07:15.709+00:00 I (9041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":5,"boot_id":31,"device_state":"SAFE_IDLE","seq":9}
+2026-11-17T18:07:16.710+00:00 I (10041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":6,"boot_id":31,"device_state":"SAFE_IDLE","seq":10}
+2026-11-17T18:07:17.710+00:00 I (11041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":7,"boot_id":31,"device_state":"SAFE_IDLE","seq":11}
+2026-11-17T18:07:18.709+00:00 I (12041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":8,"boot_id":31,"device_state":"SAFE_IDLE","seq":12}
+2026-11-17T18:07:19.709+00:00 I (13040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":9,"boot_id":31,"device_state":"SAFE_IDLE","seq":13}
+2026-11-17T18:07:20.710+00:00 I (14041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":10,"boot_id":31,"device_state":"SAFE_IDLE","seq":14}
+2026-11-17T18:07:21.710+00:00 I (15041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":11,"boot_id":31,"device_state":"SAFE_IDLE","seq":15}
+2026-11-17T18:07:22.711+00:00 I (16041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":12,"boot_id":31,"device_state":"SAFE_IDLE","seq":16}
+2026-11-17T18:07:23.710+00:00 I (17041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":13,"boot_id":31,"device_state":"SAFE_IDLE","seq":17}
+2026-11-17T18:07:24.709+00:00 I (18040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":14,"boot_id":31,"device_state":"SAFE_IDLE","seq":18}
+2026-11-17T18:07:25.709+00:00 I (19040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":15,"boot_id":31,"device_state":"SAFE_IDLE","seq":19}
+2026-11-17T18:07:26.709+00:00 I (20040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":16,"boot_id":31,"device_state":"SAFE_IDLE","seq":20}
+2026-11-17T18:07:27.710+00:00 I (21041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":17,"boot_id":31,"device_state":"SAFE_IDLE","seq":21}
+2026-11-17T18:07:28.262+00:00 I (21593) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"SET_INSPECTION_CONFIG","cmd_id":2756,"seq":22}
+2026-11-17T18:07:28.276+00:00 I (21600) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"SET_INSPECTION_CONFIG","cmd_id":2756,"seq":23}
+2026-11-17T18:07:28.292+00:00 I (21613) station: TX {"schema_version":1,"msg_type":"COMPLETED","device_id":2,"session_id":2194,"ref_msg_type":"SET_INSPECTION_CONFIG","cmd_id":2756,"result":"CONFIG_APPLIED","seq":24}
+2026-11-17T18:07:28.709+00:00 I (22040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":18,"boot_id":31,"device_state":"SAFE_IDLE","seq":25}
+2026-11-17T18:07:29.711+00:00 I (23041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":19,"boot_id":31,"device_state":"SAFE_IDLE","seq":26}
+2026-11-17T18:07:30.710+00:00 I (24041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":20,"boot_id":31,"device_state":"SAFE_IDLE","seq":27}
+2026-11-17T18:07:31.711+00:00 I (25041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":21,"boot_id":31,"device_state":"SAFE_IDLE","seq":28}
+2026-11-17T18:07:32.711+00:00 I (26041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":22,"boot_id":31,"device_state":"SAFE_IDLE","seq":29}
+2026-11-17T18:07:33.711+00:00 I (27040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":23,"boot_id":31,"device_state":"SAFE_IDLE","seq":30}
+2026-11-17T18:07:34.711+00:00 I (28041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":24,"boot_id":31,"device_state":"SAFE_IDLE","seq":31}
+2026-11-17T18:07:35.711+00:00 I (29041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":25,"boot_id":31,"device_state":"SAFE_IDLE","seq":32}
+2026-11-17T18:07:36.711+00:00 I (30041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":26,"boot_id":31,"device_state":"SAFE_IDLE","seq":33}
+2026-11-17T18:07:37.711+00:00 I (31041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":27,"boot_id":31,"device_state":"SAFE_IDLE","seq":34}
+2026-11-17T18:07:38.541+00:00 I (31871) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"SET_INSPECTION_CONFIG","cmd_id":2759,"seq":35}
+2026-11-17T18:07:38.555+00:00 I (31879) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"SET_INSPECTION_CONFIG","cmd_id":2759,"seq":36}
+2026-11-17T18:07:38.571+00:00 I (31893) station: TX {"schema_version":1,"msg_type":"COMPLETED","device_id":2,"session_id":2194,"ref_msg_type":"SET_INSPECTION_CONFIG","cmd_id":2759,"result":"CONFIG_APPLIED","seq":37}
+2026-11-17T18:07:38.710+00:00 I (32040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":28,"boot_id":31,"device_state":"SAFE_IDLE","seq":38}
+2026-11-17T18:07:39.711+00:00 I (33041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":29,"boot_id":31,"device_state":"SAFE_IDLE","seq":39}
+2026-11-17T18:07:40.711+00:00 I (34041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":30,"boot_id":31,"device_state":"SAFE_IDLE","seq":40}
+2026-11-17T18:07:41.021+00:00 I (34352) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":276,"seq":41}
+2026-11-17T18:07:41.026+00:00 I (34355) station: Duplicate test RX job=276 part=277 seq=34
+2026-11-17T18:07:41.039+00:00 I (34363) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":276,"seq":42}
+2026-11-17T18:07:41.044+00:00 I (34373) station: Duplicate test START job=276 seq=34
+2026-11-17T18:07:41.083+00:00 I (34414) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":276,"seq":43}
+2026-11-17T18:07:41.089+00:00 I (34417) station: Duplicate test RX job=276 part=277 seq=35
+2026-11-17T18:07:41.095+00:00 I (34422) station: Duplicate test DUPLICATE job=276 seq=35 state=active
+2026-11-17T18:07:41.108+00:00 I (34434) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":276,"seq":44}
+2026-11-17T18:07:41.711+00:00 I (35041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":31,"boot_id":31,"device_state":"BUSY","seq":45}
+2026-11-17T18:07:42.711+00:00 I (36041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":32,"boot_id":31,"device_state":"BUSY","seq":46}
+2026-11-17T18:07:43.035+00:00 I (36373) station: Duplicate test COMPLETE job=276 elapsed_ms=2000
+2026-11-17T18:07:43.057+00:00 I (36381) station: TX {"schema_version":1,"msg_type":"INSPECTION_RESULT","device_id":2,"session_id":2194,"batch_id":34,"job_id":276,"part_id":277,"config_version":52,"inspection_elapsed_ms":2000,"result":"PASS","seq":47}
+2026-11-17T18:07:43.128+00:00 W (36466) station: Duplicate test replay RESULT job=276 next_seq=48
+2026-11-17T18:07:43.147+00:00 I (36470) station: TX {"schema_version":1,"msg_type":"INSPECTION_RESULT","device_id":2,"session_id":2194,"batch_id":34,"job_id":276,"part_id":277,"config_version":52,"inspection_elapsed_ms":2000,"result":"PASS","seq":48}
+2026-11-17T18:07:43.199+00:00 I (36529) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":277,"seq":49}
+2026-11-17T18:07:43.205+00:00 I (36533) station: Duplicate test RX job=277 part=278 seq=39
+2026-11-17T18:07:43.218+00:00 I (36541) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":277,"seq":50}
+2026-11-17T18:07:43.222+00:00 I (36551) station: Duplicate test START job=277 seq=39
+2026-11-17T18:07:43.711+00:00 I (37040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":33,"boot_id":31,"device_state":"BUSY","seq":51}
+2026-11-17T18:07:44.712+00:00 I (38041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":34,"boot_id":31,"device_state":"BUSY","seq":52}
+2026-11-17T18:07:45.213+00:00 I (38551) station: Duplicate test COMPLETE job=277 elapsed_ms=2000
+2026-11-17T18:07:45.232+00:00 I (38556) station: TX {"schema_version":1,"msg_type":"INSPECTION_RESULT","device_id":2,"session_id":2194,"batch_id":34,"job_id":277,"part_id":278,"config_version":52,"inspection_elapsed_ms":2000,"result":"PASS","seq":53}
+2026-11-17T18:07:45.713+00:00 I (39042) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":35,"boot_id":31,"device_state":"SAFE_IDLE","seq":54}
+2026-11-17T18:07:45.756+00:00 I (39087) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":278,"seq":55}
+2026-11-17T18:07:45.762+00:00 I (39090) station: Duplicate test RX job=278 part=279 seq=44
+2026-11-17T18:07:45.775+00:00 I (39098) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":278,"seq":56}
+2026-11-17T18:07:45.780+00:00 I (39108) station: Duplicate test START job=278 seq=44
+2026-11-17T18:07:46.711+00:00 I (40040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":36,"boot_id":31,"device_state":"BUSY","seq":57}
+2026-11-17T18:07:47.711+00:00 I (41040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":37,"boot_id":31,"device_state":"BUSY","seq":58}
+2026-11-17T18:07:47.770+00:00 I (41108) station: Duplicate test COMPLETE job=278 elapsed_ms=2000
+2026-11-17T18:07:47.789+00:00 I (41112) station: TX {"schema_version":1,"msg_type":"INSPECTION_RESULT","device_id":2,"session_id":2194,"batch_id":34,"job_id":278,"part_id":279,"config_version":52,"inspection_elapsed_ms":2000,"result":"FAIL","seq":59}
+2026-11-17T18:07:48.036+00:00 I (41366) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":279,"seq":60}
+2026-11-17T18:07:48.041+00:00 I (41369) station: Duplicate test RX job=279 part=280 seq=49
+2026-11-17T18:07:48.054+00:00 I (41377) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":279,"seq":61}
+2026-11-17T18:07:48.059+00:00 I (41387) station: Duplicate test START job=279 seq=49
+2026-11-17T18:07:48.711+00:00 I (42040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":38,"boot_id":31,"device_state":"BUSY","seq":62}
+2026-11-17T18:07:49.711+00:00 I (43040) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":39,"boot_id":31,"device_state":"BUSY","seq":63}
+2026-11-17T18:07:50.049+00:00 I (43387) station: Duplicate test COMPLETE job=279 elapsed_ms=2000
+2026-11-17T18:07:50.068+00:00 I (43392) station: TX {"schema_version":1,"msg_type":"INSPECTION_RESULT","device_id":2,"session_id":2194,"batch_id":34,"job_id":279,"part_id":280,"config_version":52,"inspection_elapsed_ms":2000,"result":"PASS","seq":64}
+2026-11-17T18:07:50.238+00:00 I (43569) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":280,"seq":65}
+2026-11-17T18:07:50.244+00:00 I (43572) station: Duplicate test RX job=280 part=281 seq=53
+2026-11-17T18:07:50.257+00:00 I (43580) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":280,"seq":66}
+2026-11-17T18:07:50.262+00:00 I (43590) station: Duplicate test START job=280 seq=53
+2026-11-17T18:07:50.711+00:00 I (44041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":40,"boot_id":31,"device_state":"BUSY","seq":67}
+2026-11-17T18:07:51.710+00:00 I (45039) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":41,"boot_id":31,"device_state":"BUSY","seq":68}
+2026-11-17T18:07:52.252+00:00 I (45590) station: Duplicate test COMPLETE job=280 elapsed_ms=2000
+2026-11-17T18:07:52.271+00:00 I (45595) station: TX {"schema_version":1,"msg_type":"INSPECTION_RESULT","device_id":2,"session_id":2194,"batch_id":34,"job_id":280,"part_id":281,"config_version":52,"inspection_elapsed_ms":2000,"result":"PASS","seq":69}
+2026-11-17T18:07:52.554+00:00 I (45884) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":281,"seq":70}
+2026-11-17T18:07:52.559+00:00 I (45887) station: Duplicate test RX job=281 part=282 seq=57
+2026-11-17T18:07:52.572+00:00 I (45895) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":281,"seq":71}
+2026-11-17T18:07:52.577+00:00 I (45905) station: Duplicate test START job=281 seq=57
+2026-11-17T18:07:52.711+00:00 I (46041) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":42,"boot_id":31,"device_state":"BUSY","seq":72}
+2026-11-17T18:07:53.719+00:00 I (47048) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":43,"boot_id":31,"device_state":"BUSY","seq":73}
+2026-11-17T18:07:54.568+00:00 I (47905) station: Duplicate test COMPLETE job=281 elapsed_ms=2000
+2026-11-17T18:07:54.587+00:00 I (47910) station: TX {"schema_version":1,"msg_type":"INSPECTION_RESULT","device_id":2,"session_id":2194,"batch_id":34,"job_id":281,"part_id":282,"config_version":52,"inspection_elapsed_ms":2000,"result":"FAIL","seq":74}
+2026-11-17T18:07:54.720+00:00 I (48049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":44,"boot_id":31,"device_state":"SAFE_IDLE","seq":75}
+2026-11-17T18:07:54.781+00:00 I (48111) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":282,"seq":76}
+2026-11-17T18:07:54.787+00:00 I (48114) station: Duplicate test RX job=282 part=283 seq=62
+2026-11-17T18:07:54.800+00:00 I (48122) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":282,"seq":77}
+2026-11-17T18:07:54.805+00:00 I (48132) station: Duplicate test START job=282 seq=62
+2026-11-17T18:07:55.721+00:00 I (49049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":45,"boot_id":31,"device_state":"BUSY","seq":78}
+2026-11-17T18:07:56.721+00:00 I (50050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":46,"boot_id":31,"device_state":"BUSY","seq":79}
+2026-11-17T18:07:56.795+00:00 I (50132) station: Duplicate test COMPLETE job=282 elapsed_ms=2000
+2026-11-17T18:07:56.814+00:00 I (50136) station: TX {"schema_version":1,"msg_type":"INSPECTION_RESULT","device_id":2,"session_id":2194,"batch_id":34,"job_id":282,"part_id":283,"config_version":52,"inspection_elapsed_ms":2000,"result":"PASS","seq":80}
+2026-11-17T18:07:57.027+00:00 I (50356) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":283,"seq":81}
+2026-11-17T18:07:57.032+00:00 I (50359) station: Duplicate test RX job=283 part=284 seq=66
+2026-11-17T18:07:57.045+00:00 I (50367) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":283,"seq":82}
+2026-11-17T18:07:57.050+00:00 I (50377) station: Duplicate test START job=283 seq=66
+2026-11-17T18:07:57.721+00:00 I (51050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":47,"boot_id":31,"device_state":"BUSY","seq":83}
+2026-11-17T18:07:58.721+00:00 I (52050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":48,"boot_id":31,"device_state":"BUSY","seq":84}
+2026-11-17T18:07:59.041+00:00 I (52378) station: Duplicate test COMPLETE job=283 elapsed_ms=2000
+2026-11-17T18:07:59.060+00:00 I (52383) station: TX {"schema_version":1,"msg_type":"INSPECTION_RESULT","device_id":2,"session_id":2194,"batch_id":34,"job_id":283,"part_id":284,"config_version":52,"inspection_elapsed_ms":2000,"result":"PASS","seq":85}
+2026-11-17T18:07:59.296+00:00 I (52626) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":284,"seq":86}
+2026-11-17T18:07:59.302+00:00 I (52629) station: Duplicate test RX job=284 part=285 seq=70
+2026-11-17T18:07:59.315+00:00 I (52637) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":284,"seq":87}
+2026-11-17T18:07:59.319+00:00 I (52647) station: Duplicate test START job=284 seq=70
+2026-11-17T18:07:59.721+00:00 I (53050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":49,"boot_id":31,"device_state":"BUSY","seq":88}
+2026-11-17T18:08:00.721+00:00 I (54050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":50,"boot_id":31,"device_state":"BUSY","seq":89}
+2026-11-17T18:08:01.310+00:00 I (54647) station: Duplicate test COMPLETE job=284 elapsed_ms=2000
+2026-11-17T18:08:01.329+00:00 I (54653) station: TX {"schema_version":1,"msg_type":"INSPECTION_RESULT","device_id":2,"session_id":2194,"batch_id":34,"job_id":284,"part_id":285,"config_version":52,"inspection_elapsed_ms":2000,"result":"FAIL","seq":90}
+2026-11-17T18:08:01.525+00:00 I (54855) station: TX {"schema_version":1,"msg_type":"DELIVERY_ACK","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":285,"seq":91}
+2026-11-17T18:08:01.530+00:00 I (54858) station: Duplicate test RX job=285 part=286 seq=74
+2026-11-17T18:08:01.543+00:00 I (54866) station: TX {"schema_version":1,"msg_type":"ACCEPTED","device_id":2,"session_id":2194,"ref_msg_type":"INSPECT_PART","job_id":285,"seq":92}
+2026-11-17T18:08:01.548+00:00 I (54876) station: Duplicate test START job=285 seq=74
+2026-11-17T18:08:01.721+00:00 I (55049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":51,"boot_id":31,"device_state":"BUSY","seq":93}
+2026-11-17T18:08:02.721+00:00 I (56050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":52,"boot_id":31,"device_state":"BUSY","seq":94}
+2026-11-17T18:08:03.539+00:00 I (56876) station: Duplicate test COMPLETE job=285 elapsed_ms=2000
+2026-11-17T18:08:03.558+00:00 I (56880) station: TX {"schema_version":1,"msg_type":"INSPECTION_RESULT","device_id":2,"session_id":2194,"batch_id":34,"job_id":285,"part_id":286,"config_version":52,"inspection_elapsed_ms":2000,"result":"PASS","seq":95}
+2026-11-17T18:08:03.722+00:00 I (57050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":53,"boot_id":31,"device_state":"SAFE_IDLE","seq":96}
+2026-11-17T18:08:04.722+00:00 I (58049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":54,"boot_id":31,"device_state":"SAFE_IDLE","seq":97}
+2026-11-17T18:08:05.722+00:00 I (59050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":55,"boot_id":31,"device_state":"SAFE_IDLE","seq":98}
+2026-11-17T18:08:06.722+00:00 I (60049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":56,"boot_id":31,"device_state":"SAFE_IDLE","seq":99}
+2026-11-17T18:08:07.721+00:00 I (61049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":57,"boot_id":31,"device_state":"SAFE_IDLE","seq":100}
+2026-11-17T18:08:08.721+00:00 I (62049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":58,"boot_id":31,"device_state":"SAFE_IDLE","seq":101}
+2026-11-17T18:08:09.722+00:00 I (63050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":59,"boot_id":31,"device_state":"SAFE_IDLE","seq":102}
+2026-11-17T18:08:10.722+00:00 I (64050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":60,"boot_id":31,"device_state":"SAFE_IDLE","seq":103}
+2026-11-17T18:08:11.722+00:00 I (65050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":61,"boot_id":31,"device_state":"SAFE_IDLE","seq":104}
+2026-11-17T18:08:12.722+00:00 I (66049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":62,"boot_id":31,"device_state":"SAFE_IDLE","seq":105}
+2026-11-17T18:08:13.722+00:00 I (67050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":63,"boot_id":31,"device_state":"SAFE_IDLE","seq":106}
+2026-11-17T18:08:14.722+00:00 I (68050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":64,"boot_id":31,"device_state":"SAFE_IDLE","seq":107}
+2026-11-17T18:08:15.723+00:00 I (69050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":65,"boot_id":31,"device_state":"SAFE_IDLE","seq":108}
+2026-11-17T18:08:16.722+00:00 I (70049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":66,"boot_id":31,"device_state":"SAFE_IDLE","seq":109}
+2026-11-17T18:08:17.723+00:00 I (71050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":67,"boot_id":31,"device_state":"SAFE_IDLE","seq":110}
+2026-11-17T18:08:18.723+00:00 I (72050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":68,"boot_id":31,"device_state":"SAFE_IDLE","seq":111}
+2026-11-17T18:08:19.723+00:00 I (73050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":69,"boot_id":31,"device_state":"SAFE_IDLE","seq":112}
+2026-11-17T18:08:20.722+00:00 I (74050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":70,"boot_id":31,"device_state":"SAFE_IDLE","seq":113}
+2026-11-17T18:08:21.722+00:00 I (75050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":71,"boot_id":31,"device_state":"SAFE_IDLE","seq":114}
+2026-11-17T18:08:22.723+00:00 I (76049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":72,"boot_id":31,"device_state":"SAFE_IDLE","seq":115}
+2026-11-17T18:08:23.722+00:00 I (77050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":73,"boot_id":31,"device_state":"SAFE_IDLE","seq":116}
+2026-11-17T18:08:24.723+00:00 I (78050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":74,"boot_id":31,"device_state":"SAFE_IDLE","seq":117}
+2026-11-17T18:08:25.723+00:00 I (79050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":75,"boot_id":31,"device_state":"SAFE_IDLE","seq":118}
+2026-11-17T18:08:26.722+00:00 I (80049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":76,"boot_id":31,"device_state":"SAFE_IDLE","seq":119}
+2026-11-17T18:08:27.723+00:00 I (81050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":77,"boot_id":31,"device_state":"SAFE_IDLE","seq":120}
+2026-11-17T18:08:28.726+00:00 I (82052) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":78,"boot_id":31,"device_state":"SAFE_IDLE","seq":121}
+2026-11-17T18:08:29.723+00:00 I (83049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":79,"boot_id":31,"device_state":"SAFE_IDLE","seq":122}
+2026-11-17T18:08:30.723+00:00 I (84050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":80,"boot_id":31,"device_state":"SAFE_IDLE","seq":123}
+2026-11-17T18:08:31.723+00:00 I (85050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":81,"boot_id":31,"device_state":"SAFE_IDLE","seq":124}
+2026-11-17T18:08:32.723+00:00 I (86049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":82,"boot_id":31,"device_state":"SAFE_IDLE","seq":125}
+2026-11-17T18:08:33.723+00:00 I (87050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":83,"boot_id":31,"device_state":"SAFE_IDLE","seq":126}
+2026-11-17T18:08:34.724+00:00 I (88050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":84,"boot_id":31,"device_state":"SAFE_IDLE","seq":127}
+2026-11-17T18:08:35.723+00:00 I (89050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":85,"boot_id":31,"device_state":"SAFE_IDLE","seq":128}
+2026-11-17T18:08:36.723+00:00 I (90049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":86,"boot_id":31,"device_state":"SAFE_IDLE","seq":129}
+2026-11-17T18:08:37.723+00:00 I (91049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":87,"boot_id":31,"device_state":"SAFE_IDLE","seq":130}
+2026-11-17T18:08:38.724+00:00 I (92049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":88,"boot_id":31,"device_state":"SAFE_IDLE","seq":131}
+2026-11-17T18:08:39.724+00:00 I (93050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":89,"boot_id":31,"device_state":"SAFE_IDLE","seq":132}
+2026-11-17T18:08:40.724+00:00 I (94050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":90,"boot_id":31,"device_state":"SAFE_IDLE","seq":133}
+2026-11-17T18:08:41.724+00:00 I (95049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":91,"boot_id":31,"device_state":"SAFE_IDLE","seq":134}
+2026-11-17T18:08:42.723+00:00 I (96049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":92,"boot_id":31,"device_state":"SAFE_IDLE","seq":135}
+2026-11-17T18:08:43.722+00:00 I (97048) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":93,"boot_id":31,"device_state":"SAFE_IDLE","seq":136}
+2026-11-17T18:08:44.724+00:00 I (98050) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":94,"boot_id":31,"device_state":"SAFE_IDLE","seq":137}
+2026-11-17T18:08:45.722+00:00 I (99048) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":95,"boot_id":31,"device_state":"SAFE_IDLE","seq":138}
+2026-11-17T18:08:46.724+00:00 I (100049) station: TX {"schema_version":1,"msg_type":"HEARTBEAT","device_id":2,"session_id":2194,"heartbeat_seq":96,"boot_id":31,"device_state":"SAFE_IDLE","seq":139}

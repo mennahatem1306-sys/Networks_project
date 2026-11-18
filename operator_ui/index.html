@@ -1,0 +1,1572 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142c43">
+  <link rel="icon" href="data:,">
+  <title>MCT431 - Operator Dashboard</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #142c43;
+      --ink: #172e43;
+      --muted: #566779;
+      --surface: #ffffff;
+      --canvas: #f1f4f7;
+      --line: #d7e0e8;
+      --blue: #155a9a;
+      --green: #156341;
+      --amber: #855000;
+      --red: #a92935;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; background: var(--canvas); color: var(--ink); font: 15px/1.5 Inter, "Segoe UI", sans-serif; }
+    button, input, select { font: inherit; }
+    button, input, select, summary { -webkit-tap-highlight-color: transparent; }
+    button { min-height: 42px; padding: 9px 15px; border: 1px solid #bdcbd8; border-radius: 7px; background: white; color: var(--ink); font-weight: 650; cursor: pointer; }
+    button:hover:not(:disabled) { background: #eaf1f7; border-color: #7d96ac; }
+    button:disabled { cursor: not-allowed; background: #eef2f5; color: #677587; border-color: #d9e1e8; }
+    button.primary { background: var(--blue); border-color: var(--blue); color: white; }
+    button.primary:hover:not(:disabled) { background: #104778; }
+    button.danger { background: #fff3f3; color: var(--red); border-color: #dfa8ae; }
+    button.primary:disabled, button.danger:disabled { background: #e5ebf1; border-color: #d5dfe8; color: #677587; }
+    :where(button, input, select, summary, a):focus-visible { outline: 3px solid #e39c31; outline-offset: 3px; }
+    a { color: #075798; text-underline-offset: 3px; }
+    h1, h2, h3, p { margin: 0; }
+    h1 { max-width: 900px; font-size: clamp(22px, 2.4vw, 31px); line-height: 1.25; font-weight: 700; letter-spacing: -.6px; }
+    h2 { font-size: 17px; font-weight: 700; }
+    h3 { font-size: 15px; font-weight: 700; }
+    p + p { margin-top: 8px; }
+    .masthead { background: var(--navy); color: white; border-bottom: 4px solid #d49236; }
+    .masthead-inner, main { width: min(1280px, 100%); margin: auto; padding: 26px 28px; }
+    .header-title { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; }
+    .eyebrow { color: #c2d1de; font-size: 12px; font-weight: 650; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 8px; }
+    .header-meta { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 22px; }
+    .header-meta > div { min-width: 110px; }
+    .header-meta dt { color: #c2d1de; font-size: 12px; }
+    .header-meta dd { margin: 2px 0 0; font-weight: 650; }
+    main { display: grid; gap: 18px; padding-top: 20px; padding-bottom: 40px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; min-width: 0; }
+    .control-layout { grid-template-columns: 1.45fr 1fr; align-items: start; }
+    .monitor-layout { grid-template-columns: 1fr 1fr; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; min-width: 0; box-shadow: 0 2px 3px #142c4303; }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+    .card-header .hint { margin-top: 3px; }
+    .hint, .muted { color: var(--muted); font-size: 13px; }
+    .badge { display: inline-flex; align-items: center; gap: 7px; border: 1px solid #c8d4df; background: #eef3f8; color: #30485f; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; line-height: 1.5; }
+    .badge.neutral { background: #f0f3f6; color: #4d5e70; border-color: #d4dde5; }
+    .badge.good { background: #e8f5ed; color: var(--green); border-color: #a7d3b9; }
+    .badge.warning { background: #fff3dc; color: var(--amber); border-color: #e6c48b; }
+    .badge.error { background: #fcebed; color: var(--red); border-color: #e2b3ba; }
+    .badge.info { background: #eaf2fc; color: #155a9a; border-color: #abc9e9; }
+    #state-badge { font-size: 15px; padding: 7px 14px; white-space: nowrap; }
+    .source-strip { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 13px 17px; border-radius: 8px; border: 1px solid #d9c29b; background: #fff8eb; color: #704a11; }
+    #source { font-size: 13px; font-weight: 750; }
+    .notice { border: 1px solid #d2dce6; border-left: 4px solid var(--blue); border-radius: 7px; padding: 12px 14px; background: #eef5fd; color: #244e73; font-size: 13px; overflow-wrap: anywhere; }
+    .notice.warning { background: #fff6e5; border-color: #e3c795; border-left-color: #a66a12; color: #754b0d; }
+    .notice.error { background: #fff0f1; border-color: #e6bbc0; border-left-color: var(--red); color: #8e2630; }
+    .notice.success { background: #edf7f0; border-color: #b2d5bf; border-left-color: var(--green); color: var(--green); }
+    .station-title { display: flex; align-items: center; gap: 12px; }
+    .station-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #c6d4e1; border-radius: 8px; background: #edf3f9; color: #234f73; font: 700 17px/1 ui-monospace, monospace; }
+    .detail-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 18px; margin: 0; }
+    .detail-grid dt { font-size: 12px; color: var(--muted); }
+    .detail-grid dd { margin: 3px 0 0; overflow-wrap: anywhere; font-weight: 600; font-size: 13px; }
+    .station-card .card-header { margin-bottom: 15px; }
+    .station-card .hint { margin-top: 2px; }
+    .field-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .field label { display: block; font-size: 13px; font-weight: 650; margin-bottom: 6px; }
+    .field input, select { width: 100%; min-width: 0; border: 1px solid #b5c6d5; border-radius: 6px; background: white; color: var(--ink); padding: 10px 11px; min-height: 42px; }
+    input:disabled { background: #eef2f5; color: #566779; }
+    input[aria-invalid="true"] { border-color: var(--red); background: #fff8f8; }
+    .field-error { color: var(--red); font-size: 12px; min-height: 0; margin-top: 4px; }
+    .field-error:empty { display: none; }
+    .form-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 17px; }
+    #config-help, #target-lock-note { margin-top: 12px; }
+    .config-summary { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 15px; }
+    .config-summary summary { cursor: pointer; font-size: 13px; font-weight: 650; }
+    .config-summary dl { margin-top: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mode-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
+    .mode-row label { display: block; font-size: 13px; font-weight: 650; margin-bottom: 6px; }
+    #mode-selection-note { min-height: 20px; margin-top: 8px; }
+    .mode-info { margin-top: 14px; display: flex; align-items: center; gap: 10px; }
+    .mode-info .hint { flex: 1; }
+    .controls-section { padding-top: 18px; margin-top: 18px; border-top: 1px solid var(--line); }
+    .actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 12px; }
+    #control-help { margin-top: 11px; }
+    #pending, #fault-warning { margin-top: 13px; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .metric { border-top: 3px solid #658cb0; }
+    .metric.accepted { border-top-color: #288257; }
+    .metric.rejected { border-top-color: #ba4c58; }
+    .metric h2 { color: var(--muted); font-size: 13px; font-weight: 650; }
+    .metric-number { display: flex; align-items: baseline; gap: 8px; margin-top: 9px; }
+    .metric-number strong { font-size: 34px; letter-spacing: -1px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+    .metric-number span { color: var(--muted); font-size: 14px; }
+    .metric.accepted strong { color: var(--green); }
+    .metric.rejected strong { color: var(--red); }
+    .progress-label { display: flex; justify-content: space-between; gap: 8px; margin-top: 14px; font-size: 12px; color: var(--muted); }
+    progress { display: block; width: 100%; height: 7px; border: none; border-radius: 6px; margin-top: 6px; accent-color: var(--blue); background: #e7edf3; }
+    progress::-webkit-progress-bar { background: #e7edf3; border-radius: 6px; }
+    progress::-webkit-progress-value { background: var(--blue); border-radius: 6px; }
+    progress::-moz-progress-bar { background: var(--blue); border-radius: 6px; }
+    .queue-slots { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 9px; margin-top: 18px; }
+    .queue-slot { border: 1px dashed #bdcbd8; border-radius: 7px; background: #f4f7fa; padding: 12px 3px; text-align: center; font-size: 12px; color: #5a6c7d; }
+    .queue-slot.occupied { background: #e8f1fb; color: #18568c; border: 1px solid #8ab2d9; font-weight: 700; }
+    .queue-slot.reserved { background: #fff4df; color: #80500a; border: 1px dashed #b9822b; font-weight: 700; }
+    .queue-slot.unknown { background: #eef1f4; }
+    #queue-note { margin-top: 12px; }
+    .operations { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; padding-top: 15px; border-top: 1px solid var(--line); }
+    .operation h3 { font-size: 13px; margin-bottom: 7px; }
+    .operation p { font-size: 13px; }
+    .operation .identifier { font: 650 17px/1.5 ui-monospace, "Cascadia Code", monospace; }
+    .command-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; margin: 0 0 12px; }
+    .command-meta dt { color: var(--muted); font-size: 12px; }
+    .command-meta dd { margin: 3px 0 0; font-size: 13px; font-weight: 600; overflow-wrap: anywhere; }
+    .stage-list { list-style: none; padding: 0; margin: 14px 0 0; max-height: 190px; overflow-y: auto; }
+    .stage-list li { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #e8edf2; padding: 8px 0; font-size: 12px; }
+    .stage-list time { color: var(--muted); flex-shrink: 0; }
+    #command-message { margin-top: 12px; }
+    .command-recovery { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 12px; }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; font-size: 13px; }
+    caption { text-align: left; color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+    .table-note { margin-bottom: 12px; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+    th { color: var(--muted); font-size: 12px; font-weight: 650; text-align: left; padding: 10px; white-space: nowrap; background: #f4f7fa; border-bottom: 1px solid var(--line); }
+    td { padding: 11px 10px; border-bottom: 1px solid #e5ebf0; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .empty { padding: 25px 12px; text-align: center; color: var(--muted); font-size: 13px; }
+    .activity { list-style: none; padding: 0; margin: 0; max-height: 320px; overflow-y: auto; }
+    .activity li { padding: 11px 0; border-bottom: 1px solid #e5ebf0; font-size: 13px; overflow-wrap: anywhere; }
+    .activity-top { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 4px; color: var(--muted); font-size: 12px; }
+    .activity-category { font-weight: 700; color: var(--blue); }
+    .activity li[data-kind="Fault"] .activity-category { color: var(--red); }
+    .activity li[data-kind="Warning"] .activity-category { color: var(--amber); }
+    .text-button { min-height: 35px; padding: 5px 10px; font-size: 12px; }
+    .final-report { border-left: 4px solid #bccbd8; }
+    .final-report.completed { border-left-color: var(--green); }
+    .final-report.aborted { border-left-color: var(--red); }
+    #final-values { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    #final-values dd { font-size: 15px; }
+    .setup summary { cursor: pointer; font-weight: 650; }
+    .setup > div { margin-top: 16px; color: var(--muted); font-size: 13px; }
+    .setup ol, .setup ul { padding-left: 20px; }
+    .setup li { margin-bottom: 6px; }
+    pre { background: #edf2f7; color: #233f58; padding: 14px; border-radius: 6px; overflow-x: auto; font-size: 12px; line-height: 1.7; }
+    code { font-family: ui-monospace, "Cascadia Code", monospace; }
+    footer { color: var(--muted); font-size: 12px; text-align: center; padding: 2px 12px; }
+    body[data-connected="false"] .data-stamp { color: #89580f; }
+    @media (max-width: 1000px) {
+      .control-layout, .monitor-layout { grid-template-columns: 1fr; }
+      .masthead-inner, main { padding-left: 20px; padding-right: 20px; }
+      .metric-number strong { font-size: 29px; }
+    }
+    @media (max-width: 650px) {
+      .row, .metrics { grid-template-columns: 1fr 1fr; }
+      .row { grid-template-columns: 1fr; }
+      .field-grid { grid-template-columns: 1fr 1fr; }
+      .detail-grid { grid-template-columns: 1fr 1fr; }
+      .header-title { flex-direction: column; }
+      .masthead-inner, main { padding: 20px 14px; }
+      .header-meta { gap: 12px 20px; margin-top: 17px; }
+      .header-meta > div { min-width: 95px; }
+      .card { padding: 17px; }
+      .metrics { gap: 12px; }
+      .metrics .card { padding: 15px; }
+      #final-values { grid-template-columns: 1fr 1fr; }
+      .card-header { flex-wrap: wrap; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      button { transition: background-color .15s, border-color .15s; }
+    }
+  </style>
+</head>
+<body data-connected="false">
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="header-title">
+        <div>
+          <p class="eyebrow">Industrial Networks / Milestone 1</p>
+          <h1>MCT431 - Production and Inspection Control Panel</h1>
+        </div>
+        <span id="state-badge" class="badge neutral" aria-live="polite">Awaiting status</span>
+      </div>
+      <dl class="header-meta">
+        <div><dt>Applied mode</dt><dd id="mode-applied">Not reported</dd></div>
+        <div><dt>Current batch</dt><dd id="batch-id">Not reported</dd></div>
+        <div><dt>Configuration version</dt><dd id="config-version">Not reported</dd></div>
+        <div><dt>Browser connection</dt><dd id="connection" role="status">Connecting...</dd></div>
+      </dl>
+    </div>
+  </header>
+  <main>
+    <div class="source-strip">
+      <span id="source">Waiting for the gateway data source</span>
+      <span id="data-stamp" class="data-stamp">No verified snapshot</span>
+    </div>
+    <p id="connection-warning" class="notice warning" role="status" hidden></p>
+    <p id="request-feedback" class="notice" role="status" aria-live="polite" hidden></p>
+    <p id="invalid-data" class="notice error" role="alert" hidden></p>
+    <noscript><p class="notice error">Enable JavaScript to use the operator dashboard.</p></noscript>
+
+    <div class="row">
+      <section class="card station-card" aria-labelledby="station-a-title">
+        <div class="card-header">
+          <div class="station-title"><span class="station-icon" aria-hidden="true">A</span><div><h2 id="station-a-title">ESP32 A - Production Station</h2><p class="hint">Device ID 1</p></div></div>
+          <span id="station-a-online" class="badge neutral">Not reported</span>
+        </div>
+        <dl class="detail-grid">
+          <div><dt>Readiness</dt><dd id="station-a-ready">Not reported</dd></div>
+          <div><dt>Local station state</dt><dd id="station-a-state">Not reported</dd></div>
+          <div><dt>Current permit / part</dt><dd id="station-a-part">Not reported</dd></div>
+          <div><dt>Heartbeat age</dt><dd id="station-a-heartbeat">Not reported</dd></div>
+          <div><dt>Boot ID</dt><dd id="station-a-boot">Not reported</dd></div>
+          <div><dt>Session ID</dt><dd id="station-a-session">Not reported</dd></div>
+        </dl>
+      </section>
+      <section class="card station-card" aria-labelledby="station-b-title">
+        <div class="card-header">
+          <div class="station-title"><span class="station-icon" aria-hidden="true">B</span><div><h2 id="station-b-title">ESP32 B - Inspection Station</h2><p class="hint">Device ID 2</p></div></div>
+          <span id="station-b-online" class="badge neutral">Not reported</span>
+        </div>
+        <dl class="detail-grid">
+          <div><dt>Readiness</dt><dd id="station-b-ready">Not reported</dd></div>
+          <div><dt>Local station state</dt><dd id="station-b-state">Not reported</dd></div>
+          <div><dt>Active inspection job</dt><dd id="station-b-job">Not reported</dd></div>
+          <div><dt>Heartbeat age</dt><dd id="station-b-heartbeat">Not reported</dd></div>
+          <div><dt>Device config version</dt><dd id="station-b-config">Not reported</dd></div>
+          <div><dt>Session ID</dt><dd id="station-b-session">Not reported</dd></div>
+        </dl>
+      </section>
+    </div>
+
+    <div class="row control-layout">
+      <section class="card" aria-labelledby="config-heading">
+        <div class="card-header">
+          <div><h2 id="config-heading">Batch configuration</h2><p class="hint">Edit settings, then confirm their application.</p></div>
+          <span id="config-status" class="badge neutral" aria-live="polite">Unconfigured</span>
+        </div>
+        <form id="config-form" novalidate>
+          <div class="field-grid">
+            <div class="field"><label for="target_parts">Target parts</label><input id="target_parts" name="target_parts" type="number" inputmode="numeric" step="1" min="1" max="1000" value="10" required aria-describedby="target_parts-error target-lock-note"><p id="target_parts-error" class="field-error"></p></div>
+            <div class="field"><label for="cycle_time_ms">Production cycle (ms)</label><input id="cycle_time_ms" name="cycle_time_ms" type="number" inputmode="numeric" step="1" min="1" max="3600000" value="500" required aria-describedby="cycle_time_ms-error"><p id="cycle_time_ms-error" class="field-error"></p></div>
+            <div class="field"><label for="inspection_time_ms">Inspection time (ms)</label><input id="inspection_time_ms" name="inspection_time_ms" type="number" inputmode="numeric" step="1" min="1" max="3600000" value="1000" required aria-describedby="inspection_time_ms-error"><p id="inspection_time_ms-error" class="field-error"></p></div>
+            <div class="field"><label for="rule_n">Rule N</label><input id="rule_n" name="rule_n" type="number" inputmode="numeric" step="1" min="1" max="2147483647" value="3" required aria-describedby="rule_n-error rule-help"><p id="rule_n-error" class="field-error"></p></div>
+            <div class="field"><label for="rule_k">Rule K</label><input id="rule_k" name="rule_k" type="number" inputmode="numeric" step="1" min="-2147483648" max="2147483647" value="0" required aria-describedby="rule_k-error rule-help"><p id="rule_k-error" class="field-error"></p></div>
+          </div>
+          <p id="target-lock-note" class="hint">The batch target is editable while the line is IDLE.</p>
+          <p id="rule-help" class="hint" style="margin-top:8px">A part fails when <code>(part_id + K) % N == 0</code>. Both operation times are in milliseconds.</p>
+          <div class="form-actions"><button id="apply-config" class="primary" disabled>Apply settings</button><span id="config-version-note" class="hint">Gateway version not reported</span></div>
+        </form>
+        <p id="config-help" class="hint">Apply the displayed settings before starting a batch.</p>
+        <details class="config-summary">
+          <summary>Submitted and confirmed settings</summary>
+          <p id="config-source-note" class="hint" style="margin-top:10px">The current mock reports a version, but does not expose the full applied configuration.</p>
+          <dl id="config-values" class="detail-grid"></dl>
+        </details>
+      </section>
+      <section class="card" aria-labelledby="mode-heading">
+        <div class="card-header"><h2 id="mode-heading">Operating mode and controls</h2></div>
+        <form id="mode-form">
+          <div class="mode-row">
+            <div><label for="mode-choice">Requested mode</label><select id="mode-choice"><option value="PRODUCTION">Production</option><option value="BENCHMARKING">Benchmarking</option></select></div>
+            <button id="apply-mode" disabled>Apply mode</button>
+          </div>
+          <p id="mode-selection-note" class="hint">The applied mode comes from gateway status.</p>
+        </form>
+        <div class="mode-info"><p id="mode-note" class="hint">Benchmark execution is not implemented for Milestone 1.</p><button id="run-benchmark" type="button" disabled>Run benchmark</button></div>
+        <div class="controls-section">
+          <h3>Production controls</h3>
+          <div class="actions">
+            <button id="start" type="button" class="primary" disabled aria-describedby="control-help">Start</button>
+            <button id="pause" type="button" disabled>Pause</button>
+            <button id="resume" type="button" disabled>Resume</button>
+            <button id="stop" type="button" class="danger" disabled>Stop</button>
+            <button id="reset" type="button" disabled>Reset Fault</button>
+            <button id="fault" type="button" hidden disabled>Simulate fault</button>
+          </div>
+          <p id="control-help" class="hint">Waiting for a current gateway snapshot.</p>
+          <p id="pending" class="notice warning" role="status" hidden></p>
+          <p id="fault-warning" class="notice error" role="alert" hidden>System Fault reported. Reset requests safe recovery from the gateway. The gateway must verify recovery before accepting it.</p>
+        </div>
+      </section>
+    </div>
+
+    <section id="metrics" class="metrics" aria-label="Production and inspection counters">
+      <article class="card metric"><h2>Produced</h2><div class="metric-number"><strong id="produced-total">--</strong><span id="produced-target">/ --</span></div><div class="progress-label"><label for="production-progress">Production progress</label><span id="production-percent">Not available</span></div><progress id="production-progress" value="0" max="100">0%</progress></article>
+      <article class="card metric"><h2>Inspected</h2><div class="metric-number"><strong id="inspected-total">--</strong><span id="inspected-target">/ --</span></div><div class="progress-label"><label for="inspection-progress">Inspection progress</label><span id="inspection-percent">Not available</span></div><progress id="inspection-progress" value="0" max="100">0%</progress></article>
+      <article class="card metric accepted"><h2>Accepted</h2><div class="metric-number"><strong id="accepted-total">--</strong></div><p class="hint" style="margin-top:14px">Confirmed PASS count</p></article>
+      <article class="card metric rejected"><h2>Rejected</h2><div class="metric-number"><strong id="rejected-total">--</strong></div><p class="hint" style="margin-top:14px">Confirmed FAIL count</p></article>
+    </section>
+
+    <div class="row monitor-layout">
+      <section class="card" aria-labelledby="queue-heading">
+        <div class="card-header"><div><h2 id="queue-heading">Inspection queue</h2><p class="hint">Five waiting positions, with active inspection tracked separately.</p></div><span id="queue-count" class="badge neutral">-- / 5 waiting</span></div>
+        <div id="queue-slots" class="queue-slots" role="list" aria-label="Waiting queue positions"></div>
+        <p id="queue-note" class="hint">Waiting for reported queue occupancy.</p>
+        <div class="operations">
+          <div class="operation"><h3>A - Current production</h3><p id="production-operation" class="identifier">Not reported</p><p id="production-operation-note" class="hint">Permit information unavailable.</p></div>
+          <div class="operation"><h3>B - Current inspection</h3><p id="inspection-operation" class="identifier">Not reported</p><p id="inspection-operation-note" class="hint">Job information unavailable.</p></div>
+        </div>
+      </section>
+      <section class="card" aria-labelledby="command-heading">
+        <div class="card-header"><div><h2 id="command-heading">Latest Command Status</h2><p class="hint">Submission, application acceptance and completion.</p></div><span id="command-stage" class="badge neutral">No command</span></div>
+        <dl class="command-meta">
+          <div><dt>Command ID</dt><dd id="command-id">--</dd></div>
+          <div><dt>Command type</dt><dd id="command-type">Not reported</dd></div>
+          <div><dt>Submitted at (browser)</dt><dd id="command-submitted">Not reported</dd></div>
+          <div><dt>Outcome</dt><dd id="command-outcome">No command submitted</dd></div>
+        </dl>
+        <p id="command-message" class="hint">Reported command stages will appear here.</p>
+        <div id="command-recovery" class="command-recovery" hidden><button id="check-command" type="button">Check status</button><button id="retry-command" type="button">Retry same command</button></div>
+        <ol id="command-stages" class="stage-list" aria-label="Reported stages of the latest command"></ol>
+        <p id="storage-note" class="hint" hidden></p>
+      </section>
+    </div>
+
+    <section class="card" aria-labelledby="inspection-heading">
+      <div class="card-header"><div><h2 id="inspection-heading">Recent Inspection Results</h2><p class="hint">The latest 30 results received in this page session.</p></div><span id="results-count" class="badge neutral">0 results</span></div>
+      <p id="inspection-time-note" class="hint table-note">Received at uses this browser's clock. Results are recent page-session data.</p>
+      <div class="table-wrap" role="region" aria-label="Scrollable recent inspection results" tabindex="0">
+        <table aria-describedby="inspection-time-note"><caption class="visually-hidden">Recent inspection results</caption><thead><tr><th scope="col">Part ID</th><th scope="col">Job ID</th><th scope="col">Batch ID</th><th scope="col">Config version</th><th scope="col">Result</th><th scope="col">Received at</th></tr></thead><tbody id="inspection-results"><tr><td colspan="6" class="empty">No inspection results received yet.</td></tr></tbody></table>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="activity-heading">
+      <div class="card-header"><div><h2 id="activity-heading">Recent activity</h2><p class="hint">Latest 100 entries. Browser reception times are labeled.</p></div><button id="clear-log" type="button" class="text-button">Clear visible log</button></div>
+      <ol id="events" class="activity" aria-label="Recent gateway and command activity"><li id="activity-empty" class="empty">Waiting for gateway activity.</li></ol>
+    </section>
+
+    <section id="final-report" class="card final-report" aria-labelledby="report-heading">
+      <div class="card-header"><div><h2 id="report-heading">Final batch report</h2><p id="batch-result" class="hint" role="status">Available when the gateway reports a completed or aborted batch.</p></div><span id="report-status" class="badge neutral">Awaiting final status</span></div>
+      <dl id="final-values" class="detail-grid"></dl>
+      <p id="report-note" class="hint" style="margin-top:14px" hidden></p>
+    </section>
+
+    <details id="local-help" class="card setup">
+      <summary>Local UI testing instructions</summary>
+      <div>
+        <p>Open PowerShell in the folder containing <code>main.py</code> and this <code>index.html</code>. Create a fresh virtual environment if the copied environment points to another computer.</p>
+        <pre><code>python -m venv .venv-dashboard
+.\.venv-dashboard\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv-dashboard\Scripts\python.exe -m uvicorn main:app --host 0.0.0.0 --port 8000</code></pre>
+        <p>Keep that terminal running and open <a href="http://localhost:8000/">http://localhost:8000/</a>. For another PC on the same network, use the server computer's IP address and port 8000.</p>
+        <ol><li>Apply settings, wait for CONFIG_APPLIED, then Start.</li><li>Use a shorter production cycle than inspection time to fill the queue.</li><li>Try Pause, Resume and Stop. Check the reported command phases and final report.</li><li>Use Simulate fault to test the mock Fault and Reset controls.</li><li>Refresh or reconnect, then reapply the displayed settings before starting another batch.</li></ol>
+      </div>
+    </details>
+    <details class="card setup">
+      <summary>Future Gateway Integration Requirements</summary>
+      <div>
+        <p>The current mock supplies aggregate counts, operation IDs, configuration version and online flags. The UI shows Not reported for optional details that are unavailable.</p>
+        <ul><li>Station readiness, local state, heartbeat age, boot ID and session ID can use flat fields such as <code>esp32_a_ready</code>, <code>esp32_a_state</code>, <code>esp32_a_heartbeat_age_ms</code>, <code>esp32_a_boot_id</code> and <code>esp32_a_session_id</code>, with equivalent ESP32 B fields.</li><li>Full applied configuration values tied to a version would allow authoritative restoration after a refresh. Currently, settings confirmed in this browser are labeled with their source and must be reapplied after reconnecting.</li><li>Stable event IDs and gateway timestamps improve event reconciliation. Without them, command history uses best-effort occurrence matching.</li><li>Optional <code>result_age_ms</code>, quarantine/reconciliation status and per-job configuration versions can populate warning and result details when supplied.</li><li>Batch start/end timestamps, duration, final queue occupancy, abortion reason and <code>can_reset_fault</code> are displayed when available. The current mock provides no exact operation countdown data.</li></ul>
+      </div>
+    </details>
+    <footer>Operator controls use the existing FastAPI commands and WebSocket status stream.</footer>
+  </main>
+  <script>
+    (() => {
+      "use strict";
+
+      const byId = (id) => document.getElementById(id);
+      const FIELD_RULES = {
+        target_parts: { label: "Target parts", min: 1, max: 1000 },
+        cycle_time_ms: { label: "Production cycle", min: 1, max: 3600000 },
+        inspection_time_ms: { label: "Inspection time", min: 1, max: 3600000 },
+        rule_n: { label: "Rule N", min: 1, max: 2147483647 },
+        rule_k: { label: "Rule K", min: -2147483648, max: 2147483647 },
+      };
+      const TERMINAL_STAGES = new Set(["COMPLETED", "REJECTED", "FAILED"]);
+      const COMMAND_TYPES = new Set(["SELECT_MODE", "SET_BATCH_CONFIG", "START_BATCH", "PAUSE_BATCH", "RESUME_BATCH", "STOP_BATCH", "RESET_FAULT"]);
+      const STAGES = new Set(["DELIVERED", "DELIVERY_ACK", "ACCEPTED", "IN_PROGRESS", "COMPLETED", "REJECTED", "FAILED"]);
+      const STORAGE_KEY = "mct431.operator.session.v2";
+      const app = {
+        snapshot: null,
+        snapshotRevision: 0,
+        receivedAt: null,
+        socket: null,
+        connected: false,
+        fresh: false,
+        epoch: 0,
+        reconnectTimer: null,
+        reconnectAttempt: 0,
+        stopped: false,
+        busy: false,
+        busyType: null,
+        pageId: globalThis.crypto?.randomUUID?.() || String(Date.now()),
+        records: new Map(),
+        latestId: null,
+        eventKeys: new Map(),
+        inspectionKeys: new Map(),
+        activity: [],
+        inspections: [],
+        modeEdited: false,
+        finalReport: null,
+        finalRequest: 0,
+        finalKey: null,
+        config: {
+          touched: false, confirmed: null, confirmedVersion: null,
+          trusted: false, awaitingVersion: false, baseVersion: null,
+          reserving: false, awaitingResult: false,
+          commandId: null, outcome: null, reason: "",
+        },
+      };
+
+      function text(value, fallback = "Not reported") {
+        return (typeof value === "string" && value.trim()) || (typeof value === "number" && Number.isFinite(value))
+          ? String(value).slice(0, 300) : fallback;
+      }
+
+      function setText(id, value, fallback) {
+        byId(id).textContent = text(value, fallback);
+      }
+
+      function badge(id, label, tone = "neutral") {
+        const element = byId(id);
+        element.textContent = label;
+        element.className = "badge " + tone;
+      }
+
+      function notice(id, message, tone = "warning") {
+        const element = byId(id);
+        element.textContent = message;
+        element.className = "notice " + tone;
+        element.hidden = !message;
+      }
+
+      function feedback(message, tone = "info") {
+        notice("request-feedback", message, tone);
+      }
+
+      function isCount(value) {
+        return typeof value === "number" && Number.isSafeInteger(value) && value >= 0;
+      }
+
+      function isId(value) {
+        return isCount(value) && value > 0 && value <= 4294967295;
+      }
+
+      function canonical(payload) {
+        return JSON.stringify(Object.fromEntries(Object.keys(payload).sort().map((key) => [key, payload[key]])));
+      }
+
+      function sameSettings(first, second) {
+        return first && second && Object.keys(FIELD_RULES).every((key) => first[key] === second[key]);
+      }
+
+      function formValues(showErrors = false) {
+        const values = {};
+        let valid = true;
+        for (const [key, rule] of Object.entries(FIELD_RULES)) {
+          const input = byId(key);
+          const value = input.value.trim() === "" ? NaN : Number(input.value);
+          let error = "";
+          if (input.value.trim() === "" || input.validity.badInput) {
+            error = rule.label + " is required.";
+          } else if (!Number.isFinite(value) || !Number.isSafeInteger(value)) {
+            error = rule.label + " must be a safely representable whole number.";
+          } else if (value < rule.min || value > rule.max) {
+            error = rule.label + " must be between " + rule.min.toLocaleString("en-US") + " and " + rule.max.toLocaleString("en-US") + ".";
+          }
+          if (error) valid = false;
+          if (showErrors) {
+            byId(key + "-error").textContent = error;
+            input.setAttribute("aria-invalid", String(Boolean(error)));
+          }
+          values[key] = value;
+        }
+        return { valid, values };
+      }
+
+      function recordEventKey(cache, key, limit) {
+        if (cache.has(key)) return false;
+        cache.set(key, true);
+        while (cache.size > limit) cache.delete(cache.keys().next().value);
+        return true;
+      }
+
+      function readableTime(value) {
+        const date = new Date(value);
+        return Number.isNaN(date.getTime()) ? "Not reported" : date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+      }
+
+      function receptionTime(message) {
+        const reported = message?.event_time_utc || message?.timestamp;
+        if (typeof reported === "string" && Number.isFinite(Date.parse(reported))) {
+          return { at: reported, label: "Reported at " + readableTime(reported) };
+        }
+        const at = new Date().toISOString();
+        return { at, label: "Received at " + readableTime(at) };
+      }
+
+      function log(category, description, key = null, message = null) {
+        if (key && !recordEventKey(app.eventKeys, key, 200)) return;
+        app.activity.unshift({ category, description: text(description, ""), time: receptionTime(message) });
+        app.activity.length = Math.min(app.activity.length, 100);
+        renderActivity();
+      }
+
+      function renderActivity() {
+        const list = byId("events");
+        list.replaceChildren();
+        if (!app.activity.length) {
+          const empty = document.createElement("li");
+          empty.className = "empty";
+          empty.textContent = "No visible activity. Gateway records are retained by the server.";
+          list.append(empty);
+          return;
+        }
+        for (const entry of app.activity) {
+          const item = document.createElement("li");
+          item.dataset.kind = entry.category;
+          const top = document.createElement("div");
+          top.className = "activity-top";
+          const category = document.createElement("span");
+          category.className = "activity-category";
+          category.textContent = entry.category;
+          const time = document.createElement("time");
+          time.dateTime = entry.time.at;
+          time.textContent = entry.time.label;
+          const description = document.createElement("p");
+          description.textContent = entry.description;
+          top.append(category, time);
+          item.append(top, description);
+          list.append(item);
+        }
+      }
+
+      function unresolved(record) {
+        return record && (record.uncertain || !TERMINAL_STAGES.has(record.stage));
+      }
+
+      function pendingRecords() {
+        return [...app.records.values()].filter(unresolved);
+      }
+
+      function latestRecord() {
+        const pending = pendingRecords();
+        return pending.find((record) => record.uncertain) || pending[pending.length - 1] || app.records.get(app.latestId);
+      }
+
+      function connectionReady() {
+        return app.connected && app.fresh && app.snapshot !== null;
+      }
+
+      function storeSession() {
+        try {
+          const draft = Object.fromEntries(Object.keys(FIELD_RULES).map((key) => [key, byId(key).value]));
+          const records = [...app.records.values()].map((record) => ({
+            id: record.id, type: record.type, payload: record.payload,
+            submittedAt: record.submittedAt, stage: record.stage, uncertain: record.uncertain,
+            reason: record.reason, errorCode: record.errorCode, events: record.events.slice(-40),
+            wsCounts: record.wsCounts, visibleCounts: record.visibleCounts,
+            originPage: record.originPage, epoch: record.epoch,
+            baseVersion: record.baseVersion, confirmationHandled: record.confirmationHandled,
+          }));
+          sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
+            draft, records, latestId: app.latestId, confirmed: app.config.confirmed,
+            confirmedVersion: app.config.confirmedVersion,
+          }));
+        } catch {
+          byId("storage-note").hidden = false;
+          byId("storage-note").textContent = "This browser cannot preserve command tracking across a refresh.";
+        }
+      }
+
+      function restoreSession() {
+        try {
+          const saved = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "null");
+          if (!saved || typeof saved !== "object") return;
+          for (const key of Object.keys(FIELD_RULES)) {
+            if (typeof saved.draft?.[key] === "string" && saved.draft[key].length < 40) byId(key).value = saved.draft[key];
+          }
+          if (saved.confirmed && Object.keys(FIELD_RULES).every((key) => Number.isSafeInteger(saved.confirmed[key]))) {
+            app.config.confirmed = saved.confirmed;
+            app.config.confirmedVersion = saved.confirmedVersion;
+          }
+          for (const savedRecord of Array.isArray(saved.records) ? saved.records.slice(-16) : []) {
+            if (!isId(savedRecord.id) || !COMMAND_TYPES.has(savedRecord.type) || !savedRecord.payload ||
+                savedRecord.payload.cmd_id !== savedRecord.id || savedRecord.payload.msg_type !== savedRecord.type) continue;
+            const record = {
+              ...savedRecord,
+              payload: Object.freeze({ ...savedRecord.payload }),
+              events: Array.isArray(savedRecord.events) ? savedRecord.events.slice(-40) : [],
+              wsCounts: savedRecord.wsCounts || {}, visibleCounts: savedRecord.visibleCounts || {},
+              checking: false, lastChecked: 0, restored: true,
+            };
+            if (!TERMINAL_STAGES.has(record.stage)) record.uncertain = true;
+            app.records.set(record.id, record);
+            if (record.type === "SET_BATCH_CONFIG") app.config.commandId = record.id;
+          }
+          if (app.records.has(saved.latestId)) app.latestId = saved.latestId;
+        } catch {
+          feedback("Saved browser state could not be restored. Apply the displayed settings to confirm them.", "warning");
+        }
+      }
+
+      function pruneCommands() {
+        while (app.records.size > 16) {
+          const oldest = [...app.records.values()].find((record) => !unresolved(record) && record.id !== app.latestId);
+          if (!oldest) break;
+          app.records.delete(oldest.id);
+        }
+      }
+
+      function configurationPhase() {
+        const record = app.records.get(app.config.commandId);
+        if (app.busyType === "SET_BATCH_CONFIG" && (app.config.reserving || !record || record.stage === "SUBMITTED" && !record.uncertain)) return "Submitting";
+        if (unresolved(record) || app.config.awaitingResult || app.config.awaitingVersion) return "Awaiting confirmation";
+        if (app.config.outcome === "REJECTED") return "Rejected";
+        if (app.config.outcome === "FAILED") return "Failed";
+        if (app.config.trusted && sameSettings(formValues().values, app.config.confirmed)) return "Applied";
+        return app.config.touched ? "Unapplied changes" : "Unconfigured";
+      }
+
+      function renderConfiguration() {
+        const record = app.records.get(app.config.commandId);
+        const phase = configurationPhase();
+        const tone = phase === "Applied" ? "good" : ["Rejected", "Failed"].includes(phase) ? "error" : phase === "Unconfigured" ? "neutral" : "warning";
+        badge("config-status", phase, tone);
+        const version = app.snapshot?.config_version;
+        setText("config-version-note", isCount(version) ? "Gateway version " + version : "Gateway version not reported");
+        const guidance = {
+          Unconfigured: "Apply the displayed settings to verify their current application.",
+          "Unapplied changes": "These edited values are not confirmed active. Apply settings before starting.",
+          Submitting: "Submitting a captured copy of these settings to the gateway.",
+          "Awaiting confirmation": "Waiting for CONFIG_APPLIED and a current gateway configuration version.",
+          Applied: "The displayed settings were confirmed by CONFIG_APPLIED in this connection.",
+          Rejected: "The gateway rejected this configuration. " + app.config.reason,
+          Failed: "Configuration request failed. " + app.config.reason,
+        };
+        byId("config-help").textContent = guidance[phase];
+        if (record?.uncertain) byId("config-help").textContent = "Status unknown - reconciliation required. The original configuration command and payload are retained.";
+        const values = byId("config-values");
+        values.replaceChildren();
+        const submitted = record?.payload;
+        for (const [key, rule] of Object.entries(FIELD_RULES)) {
+          const group = document.createElement("div");
+          const label = document.createElement("dt");
+          const value = document.createElement("dd");
+          label.textContent = rule.label;
+          const confirmed = app.config.confirmed?.[key];
+          value.textContent = "Submitted " + text(submitted?.[key], "--") + " / confirmed " + text(confirmed, "--");
+          group.append(label, value);
+          values.append(group);
+        }
+        byId("config-source-note").textContent = app.config.confirmed
+          ? (app.config.trusted ? "Last configuration confirmed in this browser. Gateway version " + text(app.config.confirmedVersion) + "."
+            : "Last locally confirmed settings are shown for reference. Reapply them to verify the current gateway configuration.")
+          : "The current mock reports a configuration version without the full active values.";
+      }
+
+      function controls() {
+        const snapshot = app.snapshot;
+        const ready = connectionReady();
+        const state = snapshot?.state;
+        const production = snapshot?.operating_mode === "PRODUCTION";
+        const pending = pendingRecords();
+        const transitioning = Boolean(snapshot?.pause_pending || snapshot?.stop_pending || snapshot?.config_updating || snapshot?.start_pending);
+        const available = ready && !app.busy && pending.length === 0 && !transitioning;
+        const validForm = formValues().valid;
+        const configured = configurationPhase() === "Applied" && app.config.trusted &&
+          app.config.confirmedVersion === snapshot?.config_version;
+        const startPending = pending.find((record) => record.type === "START_BATCH");
+        const locked = ["RUNNING", "PAUSED"].includes(state) || app.busyType === "START_BATCH" ||
+          Boolean(startPending || snapshot?.pause_pending || snapshot?.stop_pending);
+        if (locked) {
+          const target = startPending?.payload.target_parts ??
+            (["RUNNING", "PAUSED"].includes(state) ? snapshot?.target_parts : undefined);
+          if (isCount(target) && byId("target_parts").value !== String(target)) byId("target_parts").value = String(target);
+        }
+        byId("target_parts").disabled = locked;
+        byId("target-lock-note").textContent = locked
+          ? "Target parts is locked for the active batch. Timing and rule changes apply to future operations."
+          : "The batch target is editable while the line is IDLE.";
+        byId("apply-mode").disabled = !available || state !== "IDLE";
+        byId("apply-config").disabled = !available || !production || !validForm || state === "FAULT";
+        byId("start").disabled = !available || !production || state !== "IDLE" || !validForm || !configured;
+        byId("pause").disabled = !available || state !== "RUNNING";
+        byId("resume").disabled = !available || state !== "PAUSED";
+        byId("stop").disabled = !available || !["RUNNING", "PAUSED"].includes(state);
+        byId("reset").disabled = !available || state !== "FAULT" || snapshot?.can_reset_fault === false;
+        byId("fault").hidden = snapshot?.mock !== true;
+        byId("fault").disabled = !ready || app.busy || state === "FAULT";
+        byId("apply-config").textContent = app.busyType === "SET_BATCH_CONFIG" ? "Submitting..." : "Apply settings";
+        byId("start").textContent = app.busyType === "START_BATCH" ? "Submitting..." : "Start";
+        byId("run-benchmark").disabled = true;
+        let help = "Ready for a configured production batch.";
+        if (!ready) help = "Waiting for a verified connection and current gateway snapshot.";
+        else if (pending.some((record) => record.uncertain)) help = "Resolve the unknown command outcome in Latest Command Status.";
+        else if (app.busy || pending.length || transitioning) help = "Waiting for the current command or transition to finish.";
+        else if (!production) help = "Apply Production mode to enable production controls.";
+        else if (state === "FAULT") help = "The gateway must confirm safe recovery before resetting Fault.";
+        else if (state !== "IDLE") help = "Controls follow the gateway's reported operating state.";
+        else if (!validForm) help = "Correct all invalid configuration fields.";
+        else if (!configured) help = "Apply the displayed settings and wait for confirmation before starting.";
+        byId("control-help").textContent = help;
+        const pausePending = snapshot?.pause_pending || pending.some((record) => record.type === "PAUSE_BATCH" && record.stage === "ACCEPTED");
+        const stopPending = snapshot?.stop_pending || pending.some((record) => record.type === "STOP_BATCH" && record.stage === "ACCEPTED");
+        notice("pending", stopPending ? "Graceful Stop requested - finishing active operations."
+          : pausePending ? "Pause requested - waiting for active operations to finish."
+          : snapshot?.config_updating ? "Gateway configuration update in progress." : "", "warning");
+        byId("fault-warning").hidden = state !== "FAULT";
+        const selected = byId("mode-choice").value;
+        byId("mode-selection-note").textContent = snapshot
+          ? (selected === snapshot.operating_mode ? "Selection matches applied mode." : "Unapplied mode selection. Current mode is " + snapshot.operating_mode + ".")
+          : "The applied mode comes from gateway status.";
+        const recovery = latestRecord();
+        byId("command-recovery").hidden = !recovery || !unresolved(recovery);
+        byId("check-command").disabled = app.busy || !recovery || recovery.checking;
+        byId("retry-command").disabled = !ready || app.busy || !recovery?.uncertain;
+      }
+
+      function stationDetail(snapshot, prefix, field) {
+        return snapshot[prefix + "_" + field] ?? snapshot.devices?.[prefix]?.[field];
+      }
+
+      function renderStations(snapshot) {
+        for (const side of ["a", "b"]) {
+          const prefix = "esp32_" + side;
+          const online = snapshot[prefix + "_online"];
+          const simulation = snapshot.mock === true;
+          badge("station-" + side + "-online", simulation ? "Not connected (simulation)" :
+            online === true ? "Online" : online === false ? "Offline" : "Not reported",
+            simulation ? "neutral" : online === true ? "good" : online === false ? "warning" : "neutral");
+          const ready = stationDetail(snapshot, prefix, "ready");
+          setText("station-" + side + "-ready", ready === true ? "Ready" : ready === false ? "Not ready" : null);
+          setText("station-" + side + "-state", stationDetail(snapshot, prefix, "state"));
+          const age = stationDetail(snapshot, prefix, "heartbeat_age_ms");
+          setText("station-" + side + "-heartbeat", isCount(age) ? age + " ms" : null);
+          setText("station-" + side + "-session", stationDetail(snapshot, prefix, "session_id"));
+          if (side === "a") {
+            setText("station-a-boot", stationDetail(snapshot, prefix, "boot_id"));
+            setText("station-a-part", snapshot.outstanding_permit_part_id, snapshot.outstanding_permit_part_id === null ? "None" : "Not reported");
+          } else {
+            setText("station-b-job", snapshot.active_job_id, snapshot.active_job_id === null ? "None" : "Not reported");
+            setText("station-b-config", stationDetail(snapshot, prefix, "config_version"));
+          }
+        }
+      }
+
+      function renderMetrics(snapshot) {
+        for (const [id, key] of [["produced", "produced_total"], ["inspected", "inspected_total"], ["accepted", "accepted_total"], ["rejected", "rejected_total"]]) {
+          setText(id + "-total", isCount(snapshot[key]) ? snapshot[key] : null, "--");
+        }
+        for (const [name, key] of [["production", "produced_total"], ["inspection", "inspected_total"]]) {
+          const target = snapshot.target_parts;
+          const value = snapshot[key];
+          const valid = isCount(target) && target > 0 && isCount(value);
+          const percent = valid ? Math.max(0, Math.min(100, value / target * 100)) : 0;
+          byId(name + "-progress").value = percent;
+          setText(name + "-percent", valid ? Math.round(percent) + "%" : "Not available");
+          const countName = name === "production" ? "produced" : "inspected";
+          byId(countName + "-target").textContent = "/ " + (isCount(target) && target > 0 ? target : "--");
+        }
+      }
+
+      function renderQueue(snapshot) {
+        const known = isCount(snapshot.queue_waiting);
+        const waiting = known ? Math.min(snapshot.queue_waiting, 5) : 0;
+        const reserved = isId(snapshot.outstanding_permit_part_id);
+        const slots = byId("queue-slots");
+        slots.replaceChildren();
+        for (let index = 0; index < 5; index++) {
+          const slot = document.createElement("div");
+          const occupied = known && index < waiting;
+          const held = known && reserved && index === waiting && waiting < 5;
+          const label = !known ? "Unknown" : occupied ? "Waiting" : held ? "Reserved" : "Empty";
+          slot.className = "queue-slot" + (!known ? " unknown" : occupied ? " occupied" : held ? " reserved" : "");
+          slot.setAttribute("role", "listitem");
+          slot.setAttribute("aria-label", "Waiting position " + (index + 1) + " - " + label);
+          slot.textContent = label;
+          slots.append(slot);
+        }
+        badge("queue-count", (known ? snapshot.queue_waiting : "--") + " / 5 waiting", snapshot.queue_blocked ? "warning" : "neutral");
+        byId("queue-note").textContent = snapshot.queue_blocked
+          ? "Production waiting - inspection queue capacity reserved/full."
+          : reserved ? "One waiting position is reserved for the reported production permit."
+          : known ? "Occupied slots represent waiting parts. Individual queued part IDs are not supplied."
+          : "Queue occupancy has not been reported.";
+        byId("queue-note").className = snapshot.queue_blocked ? "notice warning" : "hint";
+        setText("production-operation", reserved ? "Part #" + snapshot.outstanding_permit_part_id :
+          snapshot.outstanding_permit_part_id === null ? "No outstanding permit" : "Not reported");
+        setText("production-operation-note", snapshot.stop_pending ? "Stopping after started work finishes." :
+          snapshot.pause_pending ? "Pause requested; started work may finish." :
+          snapshot.state === "PAUSED" ? "Batch paused by the operator." :
+          snapshot.queue_blocked ? "New production is waiting for queue capacity." :
+          reserved ? "Production permit reported. Exact remaining time is unavailable." : "Waiting for an authorized production permit.");
+        const active = isId(snapshot.active_job_id);
+        setText("inspection-operation", active ? "Job #" + snapshot.active_job_id :
+          snapshot.active_job_id === null ? "No active inspection" : "Not reported");
+        const jobVersion = snapshot.active_job_config_version;
+        setText("inspection-operation-note", active
+          ? "Inspection active. Job config " + text(jobVersion) + ". Exact remaining time is unavailable."
+          : snapshot.active_job_id === null ? "Inspection is idle." : "Inspection state has not been reported.");
+      }
+
+      function renderCommand() {
+        const record = latestRecord();
+        byId("command-stages").replaceChildren();
+        if (!record) {
+          badge("command-stage", "No command");
+          return;
+        }
+        setText("command-id", record.id);
+        setText("command-type", record.type);
+        setText("command-submitted", readableTime(record.submittedAt));
+        const stage = record.uncertain ? "STATUS UNKNOWN" : record.stage;
+        badge("command-stage", stage, record.uncertain ? "warning" : stage === "COMPLETED" ? "good" : ["FAILED", "REJECTED"].includes(stage) ? "error" : "info");
+        setText("command-outcome", record.uncertain ? "Reconciliation required" : TERMINAL_STAGES.has(record.stage) ? "Confirmed " + record.stage.toLowerCase() : "Awaiting completion");
+        let message = record.uncertain ? "Status unknown - reconciliation required. Check status or retry the identical command."
+          : record.stage === "ACCEPTED" ? "The application accepted this command. Completion is pending."
+          : record.stage === "DELIVERED" ? "The mock reports application delivery."
+          : record.stage === "COMPLETED" ? "The gateway reported completion."
+          : record.stage === "SUBMITTED" ? "Submitted from this browser; awaiting a gateway response."
+          : "Reported stage " + record.stage + ".";
+        if (record.reason) message += " " + (record.errorCode ? record.errorCode + " - " : "") + record.reason;
+        byId("command-message").textContent = message;
+        const submitted = document.createElement("li");
+        submitted.textContent = "SUBMITTED - browser " + readableTime(record.submittedAt);
+        byId("command-stages").append(submitted);
+        for (const event of record.events) {
+          const item = document.createElement("li");
+          const description = document.createElement("span");
+          description.textContent = event.event + (event.result ? " - " + text(event.result) : "") +
+            (event.error_code ? " - " + text(event.error_code) : "");
+          const time = document.createElement("time");
+          time.dateTime = event.receivedAt;
+          time.textContent = "Received at " + readableTime(event.receivedAt);
+          item.append(description, time);
+          byId("command-stages").append(item);
+        }
+      }
+
+      function renderInspections() {
+        const body = byId("inspection-results");
+        body.replaceChildren();
+        badge("results-count", app.inspections.length + " results");
+        if (!app.inspections.length) {
+          const row = document.createElement("tr");
+          const empty = document.createElement("td");
+          empty.colSpan = 6;
+          empty.className = "empty";
+          empty.textContent = "No inspection results received yet.";
+          row.append(empty);
+          body.append(row);
+          return;
+        }
+        for (const result of app.inspections) {
+          const row = document.createElement("tr");
+          for (const value of [result.part_id, result.job_id, result.batch_id, result.config_version]) {
+            const cell = document.createElement("td");
+            cell.textContent = text(value, "--");
+            row.append(cell);
+          }
+          const verdict = document.createElement("td");
+          const label = document.createElement("span");
+          label.className = "badge " + (result.verdict === "PASS" ? "good" : "error");
+          label.textContent = result.verdict;
+          verdict.append(label);
+          const time = document.createElement("td");
+          time.textContent = readableTime(result.receivedAt);
+          time.title = "Received at " + result.receivedAt;
+          row.append(verdict, time);
+          body.append(row);
+        }
+      }
+
+      function addInspection(message) {
+        const verdict = ["PASS", "FAIL"].includes(message.result) ? message.result :
+          ["PASS", "FAIL"].includes(message.verdict) ? message.verdict : null;
+        if (!verdict || !isId(message.job_id) || !isId(message.part_id)) {
+          invalidMessage("Inspection result is missing valid IDs or a PASS/FAIL value.");
+          return;
+        }
+        const identity = message.event_id ?? [message.batch_id, message.job_id, message.part_id, message.config_version, verdict].join("|");
+        if (!recordEventKey(app.inspectionKeys, String(identity), 100)) return;
+        app.inspections.unshift({ ...message, verdict, receivedAt: new Date().toISOString() });
+        app.inspections.length = Math.min(app.inspections.length, 30);
+        renderInspections();
+        let detail = "Part #" + message.part_id + " / job #" + message.job_id + " - " + verdict;
+        if (isCount(message.result_age_ms)) detail += " / age " + message.result_age_ms + " ms";
+        const disposition = message.disposition || message.late_flag || message.status;
+        if (typeof disposition === "string") detail += " / " + text(disposition);
+        log("Inspection", detail, "inspection|" + identity, message);
+      }
+
+      function renderFinalReport() {
+        const report = app.finalReport;
+        const values = byId("final-values");
+        values.replaceChildren();
+        byId("final-report").className = "card final-report";
+        if (!report) {
+          badge("report-status", "Awaiting final status");
+          byId("batch-result").textContent = "Available when the gateway reports a completed or aborted batch.";
+          byId("report-note").hidden = true;
+          return;
+        }
+        const completed = report.batch_status === "COMPLETED";
+        byId("final-report").classList.add(completed ? "completed" : "aborted");
+        badge("report-status", completed ? "Batch Completed" : "Batch Aborted", completed ? "good" : "error");
+        byId("batch-result").textContent = "Gateway-reported final status for batch #" + report.batch_id + ".";
+        const entries = [
+          ["Batch ID", report.batch_id], ["Final status", report.batch_status],
+          ["Target parts", report.target_parts], ["Produced", report.produced_total],
+          ["Inspected", report.inspected_total], ["Accepted", report.accepted_total],
+          ["Rejected", report.rejected_total], ["Final waiting queue", report.queue_waiting],
+          ["Started at", report.started_at], ["Finished at", report.finished_at],
+          ["Duration", isCount(report.duration_ms) ? report.duration_ms + " ms" : null],
+          ["Abortion reason", report.abort_reason],
+        ];
+        for (const [name, value] of entries) {
+          const group = document.createElement("div");
+          const term = document.createElement("dt");
+          const definition = document.createElement("dd");
+          term.textContent = name;
+          definition.textContent = text(value);
+          group.append(term, definition);
+          values.append(group);
+        }
+      }
+
+      function invalidMessage(reason) {
+        notice("invalid-data", "Invalid gateway data - " + text(reason, "message could not be read"), "error");
+        log("Warning", "Invalid gateway data - " + reason, "invalid|" + reason);
+      }
+
+      function validateSnapshot(message) {
+        if (!message || typeof message !== "object" || Array.isArray(message) ||
+            !["IDLE", "RUNNING", "PAUSED", "FAULT"].includes(message.state) ||
+            !["PRODUCTION", "BENCHMARKING"].includes(message.operating_mode)) return false;
+        if (message.schema_version !== undefined && message.schema_version !== 1) return false;
+        for (const key of ["target_parts", "produced_total", "inspected_total", "accepted_total", "rejected_total", "queue_waiting", "config_version", "late_result_count"]) {
+          if (message[key] !== undefined && !isCount(message[key])) return false;
+        }
+        if (message.queue_waiting > 5) return false;
+        for (const key of ["batch_id", "active_job_id", "outstanding_permit_part_id"]) {
+          if (message[key] !== undefined && message[key] !== null && !isId(message[key])) return false;
+        }
+        for (const key of ["mock", "esp32_a_online", "esp32_b_online", "pause_pending", "stop_pending", "queue_blocked", "config_updating", "benchmark_ready", "can_reset_fault"]) {
+          if (message[key] !== undefined && typeof message[key] !== "boolean") return false;
+        }
+        return true;
+      }
+
+      function renderConnection() {
+        document.body.dataset.connected = String(connectionReady());
+        byId("connection").textContent = connectionReady() ? "Connected" : app.connected ? "Synchronizing..." : "Disconnected / reconnecting";
+        if (connectionReady()) {
+          notice("connection-warning", "");
+          setText("data-stamp", "Snapshot received at " + readableTime(app.receivedAt));
+        } else {
+          notice("connection-warning", app.snapshot
+            ? "Dashboard connection lost - displaying last known data."
+            : "Waiting for the FastAPI server and a valid status snapshot.", "warning");
+          setText("data-stamp", app.snapshot ? "Last known data - current status unverified" : "No verified snapshot");
+        }
+        if (app.snapshot) {
+          const state = app.snapshot.state;
+          badge("state-badge", (connectionReady() ? "" : "Last known ") + state,
+            state === "RUNNING" ? "good" : state === "FAULT" ? "error" : state === "PAUSED" ? "warning" : "neutral");
+        }
+      }
+
+      function renderStatus(message) {
+        if (!validateSnapshot(message)) {
+          invalidMessage("Status snapshot has invalid state, identifiers or counter values.");
+          return false;
+        }
+        const previous = app.snapshot;
+        app.snapshot = message;
+        app.snapshotRevision++;
+        app.receivedAt = new Date().toISOString();
+        app.fresh = app.connected;
+        notice("invalid-data", "");
+        if (app.config.awaitingVersion && app.config.confirmed &&
+            isCount(message.config_version) && message.config_version > app.config.baseVersion) {
+          app.config.confirmedVersion = message.config_version;
+          app.config.awaitingVersion = false;
+          app.config.trusted = connectionReady();
+        } else if (app.config.trusted && app.config.confirmedVersion !== message.config_version) {
+          app.config.trusted = false;
+          app.config.touched = false;
+          feedback("The gateway configuration version changed. Reapply the displayed settings to confirm them.", "warning");
+        }
+        setText("mode-applied", message.operating_mode);
+        setText("batch-id", message.batch_id, message.batch_id === null ? "None" : "Not reported");
+        setText("config-version", message.config_version);
+        byId("source").textContent = message.mock === true
+          ? "SIMULATION MODE - No ESP32 hardware connected"
+          : message.mock === false ? "LIVE GATEWAY" : "DATA SOURCE NOT REPORTED";
+        if (!app.modeEdited) byId("mode-choice").value = message.operating_mode;
+        byId("mode-note").textContent = "Benchmark execution is not implemented for Milestone 1.";
+        renderStations(message);
+        renderMetrics(message);
+        renderQueue(message);
+        if (previous && previous.state !== message.state) log(message.state === "FAULT" ? "Fault" : "System", "Gateway state changed to " + message.state + ".");
+        if (message.late_result_count > (previous?.late_result_count || 0)) {
+          log("Warning", "Gateway reports " + message.late_result_count + " late results. Result age and disposition are shown only when reported.", "late|" + message.late_result_count);
+        }
+        if (["RUNNING", "PAUSED"].includes(message.state) && app.finalReport?.batch_id !== message.batch_id) {
+          app.finalReport = null;
+          app.finalKey = null;
+          app.finalRequest++;
+          renderFinalReport();
+        }
+        if (["COMPLETED", "ABORTED"].includes(message.batch_status) && isId(message.batch_id)) loadFinalReport(message);
+        renderConnection();
+        controls();
+        renderConfiguration();
+        storeSession();
+        return true;
+      }
+
+      class RequestError extends Error {
+        constructor(code, reason, status = 0, body = null) {
+          super(reason);
+          this.code = code;
+          this.status = status;
+          this.body = body;
+        }
+      }
+
+      async function request(path, options = {}) {
+        const abort = new AbortController();
+        const timeout = setTimeout(() => abort.abort(), 5000);
+        try {
+          const response = await fetch(path, { ...options, cache: "no-store", signal: abort.signal });
+          const responseText = await response.text();
+          let body;
+          try {
+            body = JSON.parse(responseText);
+          } catch {
+            throw new RequestError("INVALID_RESPONSE", "The server returned HTTP " + response.status + " without a valid JSON response.", response.status);
+          }
+          if (!response.ok) {
+            const error = body && typeof body === "object" ? body.error || body.detail || body : {};
+            throw new RequestError(text(error?.error_code, "HTTP_" + response.status),
+              text(error?.reason || error?.message, "The server rejected the request."), response.status, body);
+          }
+          return body;
+        } catch (error) {
+          if (error instanceof RequestError) throw error;
+          throw new RequestError(error.name === "AbortError" ? "HTTP_TIMEOUT" : "NETWORK_ERROR",
+            error.name === "AbortError" ? "The HTTP request timed out. Command completion is not confirmed." :
+              "The dashboard could not reach the server. Check the running FastAPI terminal and connection.");
+        } finally {
+          clearTimeout(timeout);
+        }
+      }
+
+      function post(path, payload) {
+        const options = { method: "POST" };
+        if (payload !== undefined) {
+          options.headers = { "Content-Type": "application/json" };
+          options.body = JSON.stringify(payload);
+        }
+        return request(path, options);
+      }
+
+      async function refreshSnapshot() {
+        const epoch = app.epoch;
+        const revision = app.snapshotRevision;
+        const snapshot = await request("/api/status");
+        // A response started before a newer socket snapshot must never roll it back.
+        if (app.stopped || epoch !== app.epoch || revision !== app.snapshotRevision) return;
+        renderStatus(snapshot);
+      }
+
+      async function loadFinalReport(message) {
+        const status = message.batch_status;
+        if (!["COMPLETED", "ABORTED"].includes(status) || !isId(message.batch_id)) return;
+        const key = message.batch_id + "|" + status;
+        if (app.finalReport?.batch_id === message.batch_id) {
+          app.finalReport = { ...app.finalReport, ...message };
+        } else {
+          app.finalReport = { ...message };
+        }
+        renderFinalReport();
+        if (key === app.finalKey) return;
+        app.finalKey = key;
+        const token = ++app.finalRequest;
+        byId("report-note").hidden = false;
+        byId("report-note").textContent = "Loading the saved batch record...";
+        try {
+          const record = await request("/api/batches/" + message.batch_id);
+          if (token !== app.finalRequest) return;
+          if (!record || record.batch_id !== message.batch_id || !["COMPLETED", "ABORTED"].includes(record.batch_status)) {
+            throw new RequestError("INVALID_RESPONSE", "The saved batch response has no matching final status.");
+          }
+          for (const key of ["target_parts", "produced_total", "inspected_total", "accepted_total", "rejected_total"]) {
+            if (record[key] !== undefined && !isCount(record[key])) throw new RequestError("INVALID_RESPONSE", "The saved batch response has invalid counters.");
+          }
+          app.finalReport = { ...app.finalReport, ...record };
+          renderFinalReport();
+          byId("report-note").textContent = "Saved batch record confirmed by /api/batches/" + message.batch_id + ". Unavailable fields are shown as Not reported.";
+        } catch (error) {
+          if (token !== app.finalRequest) return;
+          byId("report-note").textContent = "Final gateway status is shown. Saved record lookup failed - " + text(error.code, "REQUEST_ERROR") + " - " + error.message;
+        }
+      }
+
+      function eventFingerprint(event) {
+        const fields = ["event", "result", "error_code", "reason", "ref_msg_type", "seq", "retry_index", "retry_count", "timestamp", "event_time_utc"];
+        return JSON.stringify(Object.fromEntries(fields.filter((key) => event[key] !== undefined).map((key) => [key, event[key]])));
+      }
+
+      function limitCounts(counts) {
+        const keys = Object.keys(counts);
+        for (const key of keys.slice(0, Math.max(0, keys.length - 40))) delete counts[key];
+      }
+
+      function onCommandCompletion(record, event) {
+        if (record.confirmationHandled) return;
+        if (record.type === "SET_BATCH_CONFIG" && event.result !== "CONFIG_APPLIED") return;
+        record.confirmationHandled = true;
+        if (record.type === "SET_BATCH_CONFIG" && event.result === "CONFIG_APPLIED") {
+          app.config.awaitingResult = false;
+          app.config.commandId = record.id;
+          app.config.confirmed = Object.fromEntries(Object.keys(FIELD_RULES).map((key) => [key, record.payload[key]]));
+          app.config.outcome = null;
+          app.config.reason = "";
+          const currentConnection = record.originPage === app.pageId && record.epoch === app.epoch && connectionReady();
+          app.config.trusted = false;
+          app.config.awaitingVersion = currentConnection;
+          app.config.baseVersion = record.baseVersion ?? -1;
+          app.config.confirmedVersion = null;
+          if (currentConnection && isCount(app.snapshot?.config_version) && app.snapshot.config_version > app.config.baseVersion) {
+            app.config.confirmedVersion = app.snapshot.config_version;
+            app.config.awaitingVersion = false;
+            app.config.trusted = true;
+          }
+          if (currentConnection) refreshSnapshot().catch((error) => feedback("Configuration completion was reported. Snapshot refresh failed - " + error.message, "warning"));
+        }
+        if (record.type === "SELECT_MODE" && event.result === "MODE_SELECTED" &&
+            byId("mode-choice").value === record.payload.operating_mode) app.modeEdited = false;
+      }
+
+      function ingestEvent(record, rawEvent, source, occurrence = null) {
+        if (!rawEvent || typeof rawEvent !== "object" || !STAGES.has(rawEvent.event)) return;
+        const event = Object.fromEntries(["event", "event_id", "result", "error_code", "reason", "ref_msg_type", "seq", "retry_index", "retry_count", "timestamp", "event_time_utc"]
+          .filter((key) => rawEvent[key] !== undefined).map((key) => [key, rawEvent[key]]));
+        const fingerprint = eventFingerprint(event);
+        if (source === "ws") {
+          record.wsCounts[fingerprint] = (record.wsCounts[fingerprint] || 0) + 1;
+          occurrence = record.wsCounts[fingerprint];
+        }
+        const stableId = event.event_id;
+        const unseenId = stableId === undefined || recordEventKey(app.eventKeys, "command-event|" + stableId, 200);
+        const count = occurrence || 1;
+        // Match occurrence counts across fetched history and live events, not just stage names.
+        if (unseenId && count > (record.visibleCounts[fingerprint] || 0)) {
+          record.visibleCounts[fingerprint] = count;
+          record.events.push({ ...event, receivedAt: new Date().toISOString() });
+          record.events = record.events.slice(-40);
+          const detail = event.result ?? event.reason ?? event.error_code;
+          log(event.event === "REJECTED" || event.event === "FAILED" ? "Warning" : "Command",
+            "Command #" + record.id + " " + record.type + " - " + event.event + (detail !== undefined ? " - " + text(detail) : ""), null, rawEvent);
+        }
+        limitCounts(record.visibleCounts);
+        limitCounts(record.wsCounts);
+        if (!TERMINAL_STAGES.has(record.stage) || TERMINAL_STAGES.has(event.event)) {
+          if (event.event !== "DELIVERED" && event.event !== "DELIVERY_ACK" || !["ACCEPTED", "IN_PROGRESS"].includes(record.stage)) {
+            record.stage = event.event;
+          }
+        }
+        record.uncertain = false;
+        if (event.error_code || event.reason) {
+          record.errorCode = text(event.error_code, "");
+          record.reason = text(event.reason, "");
+        } else if (event.event === "COMPLETED") {
+          record.errorCode = "";
+          record.reason = "";
+        }
+        if (record.type === "SET_BATCH_CONFIG" && ["REJECTED", "FAILED"].includes(event.event)) {
+          app.config.awaitingResult = false;
+          app.config.outcome = event.event;
+          app.config.reason = (record.errorCode ? record.errorCode + " - " : "") + record.reason;
+          app.config.awaitingVersion = false;
+        }
+        if (event.event === "COMPLETED") onCommandCompletion(record, event);
+      }
+
+      function ingestHistory(record, body, reconcile = false) {
+        if (!body || body.cmd_id !== record.id || !Array.isArray(body.events) || body.events.length > 500) {
+          throw new RequestError("INVALID_RESPONSE", "Command lookup returned an unexpected record.");
+        }
+        if (body.payload && canonical(body.payload) !== canonical(record.payload)) {
+          throw new RequestError("CMD_ID_CONFLICT", "The gateway record has a different payload for the retained command ID.");
+        }
+        const counts = {};
+        for (const event of body.events) {
+          if (!event || !STAGES.has(event.event)) continue;
+          const key = eventFingerprint(event);
+          counts[key] = (counts[key] || 0) + 1;
+          ingestEvent(record, event, "history", counts[key]);
+        }
+        if (!body.events.some((event) => event && STAGES.has(event.event))) {
+          throw new RequestError("INVALID_RESPONSE", "No recognized command stage was reported.");
+        }
+        if (reconcile && record.epoch !== app.epoch) {
+          record.wsCounts = { ...record.visibleCounts };
+        }
+        record.lastChecked = Date.now();
+        renderCommand();
+        controls();
+        renderConfiguration();
+        storeSession();
+      }
+
+      function markUnknown(record, error) {
+        record.uncertain = true;
+        record.errorCode = text(error?.code, "NETWORK_ERROR");
+        record.reason = text(error?.message, "The latest command outcome could not be confirmed.");
+        log("Warning", "Command #" + record.id + " status unknown - reconciliation required.", "unknown|" + record.id + "|" + record.submittedAt);
+        feedback("Status unknown - reconciliation required for command #" + record.id + ". Its original ID and payload are retained.", "warning");
+        renderCommand();
+        controls();
+        renderConfiguration();
+        storeSession();
+      }
+
+      async function reconcileRecord(record, manual = false) {
+        if (!record || record.checking) return;
+        record.checking = true;
+        controls();
+        try {
+          const body = await request("/api/commands/" + record.id);
+          ingestHistory(record, body, true);
+          if (manual) feedback("Recovered command #" + record.id + " - " + record.stage + ".", TERMINAL_STAGES.has(record.stage) ? record.stage === "COMPLETED" ? "success" : "warning" : "info");
+        } catch (error) {
+          if (!TERMINAL_STAGES.has(record.stage) || record.uncertain) markUnknown(record, error);
+        } finally {
+          record.lastChecked = Date.now();
+          record.checking = false;
+          controls();
+        }
+      }
+
+      async function submitRecord(record) {
+        try {
+          const body = await post("/api/commands", record.payload);
+          ingestHistory(record, body);
+          if (record.stage === "REJECTED" || record.stage === "FAILED") {
+            feedback((record.errorCode || record.stage) + " - " + (record.reason || "The gateway rejected the command."), "error");
+          } else {
+            feedback("Command #" + record.id + " - " + record.stage + (record.stage === "ACCEPTED" ? ". Waiting for completion." : "."), record.stage === "COMPLETED" ? "success" : "info");
+          }
+        } catch (error) {
+          if (error.body?.cmd_id === record.id && Array.isArray(error.body.events)) {
+            try {
+              ingestHistory(record, error.body);
+              feedback((record.errorCode || error.code) + " - " + (record.reason || error.message), "error");
+              return;
+            } catch (recordError) {
+              error = recordError;
+            }
+          }
+          if (!record.uncertain && error.status >= 400 && error.status < 500 && error.code !== "INVALID_RESPONSE" &&
+              !["CMD_ID_CONFLICT", "DUPLICATE_ID_CONFLICT"].includes(error.code)) {
+            ingestEvent(record, { event: "REJECTED", error_code: error.code, reason: error.message }, "history", 1);
+            feedback(error.code + " - " + error.message, "error");
+          } else if (!TERMINAL_STAGES.has(record.stage) || record.uncertain) {
+            markUnknown(record, error);
+            await reconcileRecord(record);
+          }
+        } finally {
+          renderCommand();
+          controls();
+          renderConfiguration();
+          storeSession();
+        }
+      }
+
+      async function command(msgType, fields = {}) {
+        if (!connectionReady() || app.busy || pendingRecords().length) return;
+        app.busy = true;
+        app.busyType = msgType;
+        if (msgType === "SET_BATCH_CONFIG") {
+          app.config.reserving = true;
+          app.config.trusted = false;
+          app.config.awaitingVersion = false;
+          app.config.outcome = null;
+        }
+        controls();
+        renderConfiguration();
+        feedback("Reserving a command ID...", "info");
+        try {
+          const reservation = await post("/api/command-ids");
+          if (!reservation || !isId(reservation.cmd_id)) throw new RequestError("INVALID_RESPONSE", "The server did not return a valid reserved command ID.");
+          const payload = Object.freeze({ schema_version: 1, msg_type: msgType, cmd_id: reservation.cmd_id, ...fields });
+          const record = {
+            id: reservation.cmd_id, type: msgType, payload, submittedAt: new Date().toISOString(),
+            stage: "SUBMITTED", uncertain: false, errorCode: "", reason: "",
+            events: [], wsCounts: {}, visibleCounts: {}, lastChecked: 0, checking: false,
+            originPage: app.pageId, epoch: app.epoch, baseVersion: app.snapshot?.config_version ?? -1,
+            confirmationHandled: false, restored: false,
+          };
+          app.records.set(record.id, record);
+          app.latestId = record.id;
+          pruneCommands();
+          if (msgType === "SET_BATCH_CONFIG") {
+            app.config.reserving = false;
+            app.config.awaitingResult = true;
+            app.config.commandId = record.id;
+            app.config.outcome = null;
+            app.config.reason = "";
+          }
+          storeSession();
+          renderCommand();
+          renderConfiguration();
+          await submitRecord(record);
+        } catch (error) {
+          feedback(text(error.code, "REQUEST_ERROR") + " - " + error.message, "error");
+          if (msgType === "SET_BATCH_CONFIG") {
+            app.config.awaitingResult = false;
+            app.config.outcome = "FAILED";
+            app.config.reason = "The submission could not obtain a command ID. " + error.message;
+          }
+        } finally {
+          app.config.reserving = false;
+          app.busy = false;
+          app.busyType = null;
+          controls();
+          renderConfiguration();
+          storeSession();
+        }
+      }
+
+      function processMessage(message) {
+        if (!message || typeof message !== "object" || Array.isArray(message) || typeof message.msg_type !== "string") {
+          invalidMessage("Expected a structured message with msg_type.");
+          return;
+        }
+        switch (message.msg_type) {
+          case "STATUS_UPDATE":
+            renderStatus(message);
+            break;
+          case "COMMAND_EVENT": {
+            if (!isId(message.cmd_id) || !STAGES.has(message.event)) {
+              invalidMessage("Command event has an invalid ID or stage.");
+              return;
+            }
+            const record = app.records.get(message.cmd_id);
+            if (record) {
+              ingestEvent(record, message, "ws");
+              renderCommand();
+              controls();
+              renderConfiguration();
+              storeSession();
+            } else {
+              const key = message.event_id === undefined ? null : "external-command|" + message.event_id;
+              log("Command", "Gateway command #" + message.cmd_id + " - " + message.event +
+                (message.result ? " - " + text(message.result) : ""), key, message);
+            }
+            break;
+          }
+          case "INSPECTION_RESULT":
+            addInspection(message);
+            break;
+          case "BATCH_COMPLETED":
+          case "BATCH_ABORTED": {
+            if (!isId(message.batch_id)) {
+              invalidMessage("Final batch event has no valid batch ID.");
+              return;
+            }
+            const final = { ...message, batch_status: message.msg_type === "BATCH_COMPLETED" ? "COMPLETED" : "ABORTED" };
+            loadFinalReport(final);
+            log("Production", "Batch #" + message.batch_id + " - " + final.batch_status,
+              "batch|" + message.batch_id + "|" + final.batch_status, message);
+            break;
+          }
+          default:
+            log("Warning", "Unrecognized gateway message " + text(message.msg_type) + ".", "message-type|" + message.msg_type);
+        }
+      }
+
+      function connect() {
+        if (app.stopped || location.protocol === "file:" ||
+            app.socket && [WebSocket.OPEN, WebSocket.CONNECTING].includes(app.socket.readyState)) return;
+        clearTimeout(app.reconnectTimer);
+        const epoch = ++app.epoch;
+        const protocol = location.protocol === "https:" ? "wss:" : "ws:";
+        const socket = new WebSocket(protocol + "//" + location.host + "/ws/status");
+        app.socket = socket;
+        socket.onopen = () => {
+          if (app.socket !== socket) return;
+          app.connected = true;
+          app.fresh = false;
+          renderConnection();
+          controls();
+          refreshSnapshot().catch((error) => feedback("Snapshot refresh failed - " + error.message, "warning"));
+        };
+        socket.onmessage = ({ data }) => {
+          if (app.socket !== socket || epoch !== app.epoch || app.stopped) return;
+          let message;
+          try {
+            message = JSON.parse(data);
+          } catch {
+            invalidMessage("A WebSocket message was not valid JSON.");
+            return;
+          }
+          const firstSnapshot = !app.fresh && message?.msg_type === "STATUS_UPDATE";
+          processMessage(message);
+          if (message?.msg_type === "STATUS_UPDATE" && connectionReady()) {
+            app.reconnectAttempt = 0;
+            if (firstSnapshot) {
+              log("System", "Dashboard connected and gateway snapshot received.", "connection|" + epoch);
+              for (const record of pendingRecords()) reconcileRecord(record);
+            }
+          }
+        };
+        socket.onerror = () => {
+          if (app.socket === socket) socket.close();
+        };
+        socket.onclose = () => {
+          if (app.socket !== socket) return;
+          app.socket = null;
+          app.connected = false;
+          app.fresh = false;
+          app.config.trusted = false;
+          app.config.awaitingVersion = false;
+          app.config.touched = false;
+          for (const record of pendingRecords()) record.uncertain = true;
+          renderConnection();
+          renderConfiguration();
+          renderCommand();
+          controls();
+          storeSession();
+          if (app.stopped) return;
+          log("Warning", "Dashboard connection lost. Retaining last known readings.", "disconnected|" + epoch);
+          const delay = Math.min(1000 * 2 ** Math.min(app.reconnectAttempt++, 4), 15000);
+          app.reconnectTimer = setTimeout(connect, delay);
+        };
+      }
+
+      async function pollCommands() {
+        if (!connectionReady() || app.stopped) return;
+        for (const record of pendingRecords()) {
+          if (!record.checking && Date.now() - record.lastChecked > 1500) reconcileRecord(record);
+        }
+      }
+
+      for (const key of Object.keys(FIELD_RULES)) {
+        byId(key).addEventListener("input", () => {
+          app.config.touched = true;
+          app.config.outcome = null;
+          app.config.reason = "";
+          formValues(true);
+          controls();
+          renderConfiguration();
+          storeSession();
+        });
+      }
+
+      byId("config-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const form = formValues(true);
+        if (!form.valid) {
+          feedback("Correct the configuration fields before applying settings.", "error");
+          document.querySelector('[aria-invalid="true"]')?.focus();
+          return;
+        }
+        if (!byId("apply-config").disabled) command("SET_BATCH_CONFIG", form.values);
+      });
+      byId("mode-choice").addEventListener("change", () => {
+        app.modeEdited = true;
+        controls();
+      });
+      byId("mode-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!byId("apply-mode").disabled) command("SELECT_MODE", { operating_mode: byId("mode-choice").value });
+      });
+      byId("start").addEventListener("click", () => {
+        const form = formValues(true);
+        controls();
+        if (form.valid && !byId("start").disabled) command("START_BATCH", { target_parts: form.values.target_parts });
+      });
+      for (const [id, type] of [["pause", "PAUSE_BATCH"], ["resume", "RESUME_BATCH"], ["stop", "STOP_BATCH"]]) {
+        byId(id).addEventListener("click", () => {
+          if (!byId(id).disabled && isId(app.snapshot?.batch_id)) command(type, { batch_id: app.snapshot.batch_id });
+        });
+      }
+      byId("reset").addEventListener("click", () => {
+        if (!byId("reset").disabled) command("RESET_FAULT");
+      });
+      byId("fault").addEventListener("click", async () => {
+        if (byId("fault").disabled || app.snapshot?.mock !== true) return;
+        app.busy = true;
+        controls();
+        try {
+          const snapshot = await post("/api/mock/fault");
+          renderStatus(snapshot);
+          feedback("The mock gateway reported Fault.", "warning");
+        } catch (error) {
+          feedback(text(error.code, "REQUEST_ERROR") + " - " + error.message, "error");
+        } finally {
+          app.busy = false;
+          controls();
+        }
+      });
+      byId("check-command").addEventListener("click", () => {
+        reconcileRecord(latestRecord(), true);
+      });
+      byId("retry-command").addEventListener("click", async () => {
+        const record = latestRecord();
+        if (!connectionReady() || app.busy || !record?.uncertain) return;
+        app.busy = true;
+        controls();
+        try {
+          await submitRecord(record);
+        } finally {
+          app.busy = false;
+          controls();
+        }
+      });
+      byId("clear-log").addEventListener("click", () => {
+        app.activity = [];
+        renderActivity();
+      });
+
+      restoreSession();
+      renderConfiguration();
+      renderCommand();
+      renderQueue({});
+      controls();
+
+      if (location.protocol === "file:") {
+        byId("connection").textContent = "Open through FastAPI";
+        notice("connection-warning", "This file needs the FastAPI server. Follow Local UI testing instructions below, then open http://localhost:8000/.", "warning");
+        byId("local-help").open = true;
+      } else {
+        refreshSnapshot().catch((error) => {
+          if (!connectionReady()) {
+            feedback(text(error.code, "CONNECTION_ERROR") + " - " + error.message + " See Local UI testing instructions below.", "error");
+            byId("local-help").open = true;
+          }
+        });
+        connect();
+      }
+      let pollTimer = setInterval(pollCommands, 1500);
+      window.addEventListener("pagehide", () => {
+        storeSession();
+        app.stopped = true;
+        clearInterval(pollTimer);
+        clearTimeout(app.reconnectTimer);
+        app.socket?.close();
+      });
+      window.addEventListener("pageshow", (event) => {
+        if (!event.persisted) return;
+        app.stopped = false;
+        app.socket = null;
+        app.connected = false;
+        app.fresh = false;
+        app.config.trusted = false;
+        pollTimer = setInterval(pollCommands, 1500);
+        connect();
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# FastAPI handles HTTP requests and WebSocket connections.
+fastapi
+# Uvicorn runs the app. The standard extra installs WebSocket support.
+uvicorn[standard]
+
+pyserial

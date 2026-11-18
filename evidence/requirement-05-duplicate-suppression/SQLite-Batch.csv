@@ -1,0 +1,2 @@
+batch_id,operating_mode,target_parts,produced_total,inspected_total,accepted_total,rejected_total,batch_status,start_cmd_id,production_finished,started_at,finished_at,abortion_reason
+34,PRODUCTION,10,10,10,7,3,COMPLETED,2761,1,2026-11-17T18:07:39.638+00:00,2026-11-17T18:08:03.555+00:00,

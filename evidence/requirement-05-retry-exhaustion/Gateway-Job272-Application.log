@@ -1,0 +1,5 @@
+INFO:     TCP TX seq=82 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2186,"batch_id":33,"part_id":272,"job_id":272,"config_version":48}
+INFO:     TCP TX seq=84 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2186,"batch_id":33,"part_id":272,"job_id":272,"config_version":48}
+INFO:     TCP TX seq=86 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2186,"batch_id":33,"part_id":272,"job_id":272,"config_version":48}
+INFO:     TCP TX seq=88 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2186,"batch_id":33,"part_id":272,"job_id":272,"config_version":48}
+WARNING:  ESP32 B: RETRY_EXHAUSTED: {'schema_version': 1, 'msg_type': 'INSPECT_PART', 'device_id': 0, 'session_id': 2186, 'batch_id': 33, 'part_id': 272, 'job_id': 272, 'config_version': 48}

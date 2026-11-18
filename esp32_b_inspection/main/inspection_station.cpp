@@ -30,6 +30,18 @@ size_t commandCount = 0;
 uint32_t syncCommand;
 uint8_t rx[Protocol::PrefixBytes + Protocol::MaxJsonBytes];
 size_t rxUsed = 0, rxNeed = Protocol::PrefixBytes;
+#ifdef MCT431_LOST_ACK_TEST
+bool lostAckTestArmed = true;
+#endif
+#ifdef MCT431_RETRY_EXHAUSTION_TEST
+bool exhaustionTestArmed = true;
+uint32_t suppressedSession, suppressedJob, suppressedBatch, suppressedPart, suppressedConfig;
+uint32_t suppressedAttempts = 0;
+#endif
+#ifdef MCT431_DUPLICATE_TEST
+bool replaySelected = false, replaySent = false;
+uint32_t replaySession, replayJob;
+#endif
 
 const char *localState() { return active >= 0 ? "BUSY" : "SAFE_IDLE"; }
 void disconnectSafe(const char *reason) {
@@ -189,8 +201,19 @@ void handleMessage(JsonDocument &d) {
   if (!strcmp(type, "ACCEPTED") || !strcmp(type, "DELIVERY_ACK")) {
     if (!strcmp(d["ref_msg_type"] | "", "INSPECTION_RESULT") && isUint32(d, "job_id")) {
       for (size_t i = 0; i < jobCount; ++i)
-        if (jobs[i].id == d["job_id"].as<uint32_t>() && jobs[i].done)
+        if (jobs[i].id == d["job_id"].as<uint32_t>() && jobs[i].done) {
           jobs[i].confirmed = true;
+#ifdef MCT431_DUPLICATE_TEST
+          if (replaySelected && !replaySent && replaySession == sessionId &&
+              replayJob == jobs[i].id && !strcmp(type, "DELIVERY_ACK")) {
+            replaySent = true;
+            ESP_LOGW("station", "Duplicate test replay RESULT job=%lu next_seq=%lu",
+                     static_cast<unsigned long>(replayJob), static_cast<unsigned long>(txSeq));
+            sendInspectionResult(jobs[i]);
+            break;
+          }
+#endif
+        }
     }
     return;
   }
@@ -260,7 +283,61 @@ void handleMessage(JsonDocument &d) {
       rejectRequest(d, "MISSING_FIELD");
       return;
     }
-    if (!sendResponse("DELIVERY_ACK", d))
+#ifdef MCT431_RETRY_EXHAUSTION_TEST
+    const uint32_t requestedJob = d["job_id"];
+    const bool validIdentity = isUint32(d, "batch_id") && isUint32(d, "part_id") &&
+                               isUint32(d, "config_version");
+    const bool duplicate = suppressedAttempts > 0 && suppressedSession == sessionId &&
+                           suppressedJob == requestedJob;
+    const bool selectJob = exhaustionTestArmed && configured && inspectionMs == 5000 &&
+                           ruleN == 3 && ruleK == 0 && validIdentity &&
+                           d["config_version"].as<uint32_t>() == configVersion &&
+                           active < 0 && jobCount < Protocol::MaxJobs &&
+                           std::none_of(jobs, jobs + jobCount, [requestedJob](const Job &job) {
+                             return job.id == requestedJob;
+                           });
+    if (selectJob) {
+      exhaustionTestArmed = false;
+      suppressedSession = sessionId;
+      suppressedJob = requestedJob;
+      suppressedBatch = d["batch_id"];
+      suppressedPart = d["part_id"];
+      suppressedConfig = d["config_version"];
+    }
+    if (selectJob || duplicate) {
+      if (!validIdentity || d["batch_id"].as<uint32_t>() != suppressedBatch ||
+          d["part_id"].as<uint32_t>() != suppressedPart ||
+          d["config_version"].as<uint32_t>() != suppressedConfig) {
+        rejectRequest(d, "DUPLICATE_ID_CONFLICT");
+        return;
+      }
+      ++suppressedAttempts;
+      // Keep a record of this job for duplicate recognition without scheduling it.
+      ESP_LOGW("station", "Retry-exhaustion RX batch=%lu part=%lu job=%lu seq=%lu "
+                           "session=%lu attempt=%lu duplicate=%s uptime_ms=%lu; "
+                           "DELIVERY_ACK, ACCEPTED and result withheld; inspection not scheduled",
+               static_cast<unsigned long>(suppressedBatch),
+               static_cast<unsigned long>(suppressedPart),
+               static_cast<unsigned long>(suppressedJob), d["seq"].as<unsigned long>(),
+               static_cast<unsigned long>(sessionId),
+               static_cast<unsigned long>(suppressedAttempts), duplicate ? "yes" : "no",
+               static_cast<unsigned long>(monotonicMs()));
+      return;
+    }
+#endif
+    bool suppressAckPair = false;
+#ifdef MCT431_LOST_ACK_TEST
+    // Select only the first new, valid job under the planned test settings.
+    const bool knownJob = std::any_of(jobs, jobs + jobCount, [&d](const Job &job) {
+      return job.id == d["job_id"].as<uint32_t>();
+    });
+    suppressAckPair = lostAckTestArmed && !knownJob && configured &&
+                      inspectionMs == 2000 && ruleN == 3 && ruleK == 0 &&
+                      active < 0 && jobCount < Protocol::MaxJobs &&
+                      isUint32(d, "batch_id") && isUint32(d, "part_id") &&
+                      isUint32(d, "config_version") && d["config_version"].as<uint32_t>() == configVersion;
+#endif
+    if (!suppressAckPair && !sendResponse("DELIVERY_ACK", d))
       return;
     if (!isUint32(d, "batch_id") || !isUint32(d, "part_id") || !isUint32(d, "config_version")) {
       rejectRequest(d, "INVALID_TYPE");
@@ -268,12 +345,27 @@ void handleMessage(JsonDocument &d) {
     }
     uint32_t id = d["job_id"], batch = d["batch_id"], part = d["part_id"],
              version = d["config_version"];
+#ifdef MCT431_DUPLICATE_TEST
+    ESP_LOGI("station", "Duplicate test RX job=%lu part=%lu seq=%lu",
+             static_cast<unsigned long>(id), static_cast<unsigned long>(part),
+             d["seq"].as<unsigned long>());
+#endif
     for (size_t i = 0; i < jobCount; ++i)
       if (jobs[i].id == id) {
         Job &j = jobs[i];
         if (j.batch != batch || j.part != part || j.version != version)
           rejectRequest(d, "DUPLICATE_ID_CONFLICT");
         else {
+#ifdef MCT431_DUPLICATE_TEST
+          ESP_LOGI("station", "Duplicate test DUPLICATE job=%lu seq=%lu state=%s",
+                   static_cast<unsigned long>(id), d["seq"].as<unsigned long>(),
+                   j.done ? "completed" : "active");
+          if (!replaySelected && !j.done) {
+            replaySelected = true;
+            replaySession = sessionId;
+            replayJob = id;
+          }
+#endif
           sendResponse("ACCEPTED", d);
           if (j.done) {
             j.attempts = 0;
@@ -302,13 +394,25 @@ void handleMessage(JsonDocument &d) {
     j.duration = inspectionMs;
     j.n = ruleN;
     j.k = ruleK;
-    if (!sendResponse("ACCEPTED", d))
+    if (!suppressAckPair && !sendResponse("ACCEPTED", d))
       return;
     if (!synced)
       return;
     j.started = monotonicMs();
     jobs[jobCount] = j;
     active = jobCount++;
+#ifdef MCT431_DUPLICATE_TEST
+    ESP_LOGI("station", "Duplicate test START job=%lu seq=%lu",
+             static_cast<unsigned long>(id), d["seq"].as<unsigned long>());
+#endif
+#ifdef MCT431_LOST_ACK_TEST
+    if (suppressAckPair) {
+      lostAckTestArmed = false;
+      ESP_LOGW("station", "Lost-ACK test consumed for batch=%lu part=%lu job=%lu",
+               static_cast<unsigned long>(batch), static_cast<unsigned long>(part),
+               static_cast<unsigned long>(id));
+    }
+#endif
     return;
   }
   rejectRequest(d, "UNKNOWN_MESSAGE_TYPE");
@@ -316,12 +420,12 @@ void handleMessage(JsonDocument &d) {
 void receiveFrames() {
 
   unsigned budget = Protocol::ReceiveBudgetBytes;
-  while (client.connected() && client.available() && budget--) {
-    if (!rxUsed)
-      frameStarted = monotonicMs();
+  while (budget--) {
     int incoming = client.read();
     if (incoming < 0)
       break;
+    if (!rxUsed)
+      frameStarted = monotonicMs();
     rx[rxUsed++] = uint8_t(incoming);
     if (rxUsed == 4 && rxNeed == 4) {
       uint32_t n =
@@ -404,6 +508,10 @@ void stationLoop() {
     j.fail = inspectionFails(j.part, j.n, j.k);
     j.done = true;
     active = -1;
+#ifdef MCT431_DUPLICATE_TEST
+    ESP_LOGI("station", "Duplicate test COMPLETE job=%lu elapsed_ms=%lu",
+             static_cast<unsigned long>(j.id), static_cast<unsigned long>(j.elapsed));
+#endif
     sendInspectionResult(j);
   }
   for (size_t i = 0; i < jobCount && synced; ++i) {
@@ -428,6 +536,15 @@ extern "C" void app_main() {
   if (fatalBoot)
     return;
   ESP_LOGI("station", "Inspection station ready; boot_id=%lu", static_cast<unsigned long>(bootId));
+#ifdef MCT431_LOST_ACK_TEST
+  ESP_LOGW("station", "Lost-ACK test armed for one new inspection (2000 ms, N=3, K=0)");
+#endif
+#ifdef MCT431_RETRY_EXHAUSTION_TEST
+  ESP_LOGW("station", "Retry-exhaustion test armed for one new inspection (5000 ms, N=3, K=0)");
+#endif
+#ifdef MCT431_DUPLICATE_TEST
+  ESP_LOGW("station", "Duplicate test armed to replay one active duplicate's result after receipt");
+#endif
   while (true)
     stationLoop();
 }

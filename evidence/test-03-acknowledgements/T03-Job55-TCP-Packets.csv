@@ -1,0 +1,6 @@
+﻿frame,timestamp_utc,source,msg_type,job_id,sequence,matching_gateway_event_id,payload_json
+119,2026-11-17T14:17:40.967868+00:00,10.181.17.167,INSPECT_PART,55,1002,1636,"{""schema_version"":1,""msg_type"":""INSPECT_PART"",""device_id"":0,""session_id"":2141,""batch_id"":11,""part_id"":55,""job_id"":55,""config_version"":14,""seq"":1002}"
+120,2026-11-17T14:17:41.016287+00:00,10.181.17.232,DELIVERY_ACK,55,1027,1644,"{""schema_version"":1,""msg_type"":""DELIVERY_ACK"",""device_id"":2,""session_id"":2141,""ref_msg_type"":""INSPECT_PART"",""job_id"":55,""seq"":1027}"
+121,2026-11-17T14:17:41.025619+00:00,10.181.17.232,ACCEPTED,55,1028,1645,"{""schema_version"":1,""msg_type"":""ACCEPTED"",""device_id"":2,""session_id"":2141,""ref_msg_type"":""INSPECT_PART"",""job_id"":55,""seq"":1028}"
+127,2026-11-17T14:17:42.023089+00:00,10.181.17.232,INSPECTION_RESULT,55,1030,1662,"{""schema_version"":1,""msg_type"":""INSPECTION_RESULT"",""device_id"":2,""session_id"":2141,""batch_id"":11,""job_id"":55,""part_id"":55,""config_version"":14,""inspection_elapsed_ms"":1000,""result"":""PASS"",""seq"":1030}"
+128,2026-11-17T14:17:42.036032+00:00,10.181.17.167,DELIVERY_ACK,55,1004,,"{""schema_version"":1,""device_id"":0,""session_id"":2141,""msg_type"":""DELIVERY_ACK"",""job_id"":55,""ref_msg_type"":""INSPECTION_RESULT"",""seq"":1004}"

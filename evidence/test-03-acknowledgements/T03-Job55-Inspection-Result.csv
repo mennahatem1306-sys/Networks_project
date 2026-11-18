@@ -1,0 +1,2 @@
+﻿job_id,part_id,batch_id,session_id,config_version,status,result,queued_at,accepted_at,completed_at
+55,55,11,2141,14,COMPLETED,PASS,2026-11-17T14:17:40.675+00:00,2026-11-17T14:17:41.063+00:00,2026-11-17T14:17:42.030+00:00

@@ -1,0 +1,6 @@
+INFO:     TCP TX seq=236 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2182,"batch_id":31,"part_id":261,"job_id":261,"config_version":44}
+INFO:     TCP TX seq=238 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2182,"batch_id":31,"part_id":261,"job_id":261,"config_version":44}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2182, 'ref_msg_type': 'INSPECT_PART', 'job_id': 261, 'seq': 246}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2182, 'ref_msg_type': 'INSPECT_PART', 'job_id': 261, 'seq': 247}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2182, 'batch_id': 31, 'job_id': 261, 'part_id': 261, 'config_version': 44, 'inspection_elapsed_ms': 2000, 'result': 'FAIL', 'seq': 249}
+INFO:     TCP TX seq=241 {"schema_version":1,"device_id":0,"session_id":2182,"msg_type":"DELIVERY_ACK","job_id":261,"ref_msg_type":"INSPECTION_RESULT"}

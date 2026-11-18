@@ -1,0 +1,198 @@
+{
+  "before": {
+    "timestamp_utc": "2026-11-17T18:17:55.499+00:00",
+    "status": {
+      "schema_version": 1,
+      "msg_type": "STATUS_UPDATE",
+      "produced_total": 10,
+      "inspected_total": 10,
+      "accepted_total": 7,
+      "rejected_total": 3,
+      "state": "IDLE",
+      "operating_mode": "PRODUCTION",
+      "benchmark_ready": false,
+      "batch_id": 34,
+      "batch_status": "COMPLETED",
+      "target_parts": 10,
+      "queue_waiting": 0,
+      "active_job_id": null,
+      "outstanding_permit_part_id": null,
+      "pause_pending": false,
+      "stop_pending": false,
+      "queue_blocked": false,
+      "config_updating": false,
+      "config_version": 54,
+      "esp32_a_online": true,
+      "esp32_b_online": true,
+      "late_result_count": 0,
+      "fault_reason": null,
+      "mock": false,
+      "can_reset_fault": false,
+      "start_pending": false,
+      "mode_note": "Benchmark execution is deferred to Milestone 2."
+    },
+    "batches": [
+      {
+        "batch_id": 11,
+        "operating_mode": "PRODUCTION",
+        "target_parts": 3,
+        "produced_total": 3,
+        "inspected_total": 3,
+        "accepted_total": 2,
+        "rejected_total": 1,
+        "batch_status": "COMPLETED",
+        "start_cmd_id": 2282,
+        "production_finished": 1,
+        "started_at": "2026-11-17T14:17:39.843+00:00",
+        "finished_at": "2026-11-17T14:17:44.803+00:00",
+        "abortion_reason": null
+      },
+      {
+        "batch_id": 33,
+        "operating_mode": "PRODUCTION",
+        "target_parts": 10,
+        "produced_total": 4,
+        "inspected_total": 0,
+        "accepted_total": 0,
+        "rejected_total": 0,
+        "batch_status": "ABORTED",
+        "start_cmd_id": 2732,
+        "production_finished": 0,
+        "started_at": "2026-11-17T17:54:31.090+00:00",
+        "finished_at": "2026-11-17T17:54:36.368+00:00",
+        "abortion_reason": "ESP32 B: RETRY_EXHAUSTED: {'schema_version': 1, 'msg_type': 'INSPECT_PART', 'device_id': 0, 'session_id': 2186, 'batch_id': 33, 'part_id': 272, 'job_id': 272, 'config_version': 48}"
+      },
+      {
+        "batch_id": 34,
+        "operating_mode": "PRODUCTION",
+        "target_parts": 10,
+        "produced_total": 10,
+        "inspected_total": 10,
+        "accepted_total": 7,
+        "rejected_total": 3,
+        "batch_status": "COMPLETED",
+        "start_cmd_id": 2761,
+        "production_finished": 1,
+        "started_at": "2026-11-17T18:07:39.638+00:00",
+        "finished_at": "2026-11-17T18:08:03.555+00:00",
+        "abortion_reason": null
+      }
+    ],
+    "job_counts": [
+      {
+        "status": "CANCELLED",
+        "jobs": 39
+      },
+      {
+        "status": "COMPLETED",
+        "jobs": 239
+      },
+      {
+        "status": "UNRESOLVED",
+        "jobs": 4
+      }
+    ],
+    "part_count": 283,
+    "event_high_water": 7121
+  },
+  "after": {
+    "timestamp_utc": "2026-11-17T18:17:57.157+00:00",
+    "status": {
+      "schema_version": 1,
+      "msg_type": "STATUS_UPDATE",
+      "produced_total": 10,
+      "inspected_total": 10,
+      "accepted_total": 7,
+      "rejected_total": 3,
+      "state": "IDLE",
+      "operating_mode": "PRODUCTION",
+      "benchmark_ready": false,
+      "batch_id": 34,
+      "batch_status": "COMPLETED",
+      "target_parts": 10,
+      "queue_waiting": 0,
+      "active_job_id": null,
+      "outstanding_permit_part_id": null,
+      "pause_pending": false,
+      "stop_pending": false,
+      "queue_blocked": false,
+      "config_updating": false,
+      "config_version": 54,
+      "esp32_a_online": true,
+      "esp32_b_online": true,
+      "late_result_count": 0,
+      "fault_reason": null,
+      "mock": false,
+      "can_reset_fault": false,
+      "start_pending": false,
+      "mode_note": "Benchmark execution is deferred to Milestone 2."
+    },
+    "batches": [
+      {
+        "batch_id": 11,
+        "operating_mode": "PRODUCTION",
+        "target_parts": 3,
+        "produced_total": 3,
+        "inspected_total": 3,
+        "accepted_total": 2,
+        "rejected_total": 1,
+        "batch_status": "COMPLETED",
+        "start_cmd_id": 2282,
+        "production_finished": 1,
+        "started_at": "2026-11-17T14:17:39.843+00:00",
+        "finished_at": "2026-11-17T14:17:44.803+00:00",
+        "abortion_reason": null
+      },
+      {
+        "batch_id": 33,
+        "operating_mode": "PRODUCTION",
+        "target_parts": 10,
+        "produced_total": 4,
+        "inspected_total": 0,
+        "accepted_total": 0,
+        "rejected_total": 0,
+        "batch_status": "ABORTED",
+        "start_cmd_id": 2732,
+        "production_finished": 0,
+        "started_at": "2026-11-17T17:54:31.090+00:00",
+        "finished_at": "2026-11-17T17:54:36.368+00:00",
+        "abortion_reason": "ESP32 B: RETRY_EXHAUSTED: {'schema_version': 1, 'msg_type': 'INSPECT_PART', 'device_id': 0, 'session_id': 2186, 'batch_id': 33, 'part_id': 272, 'job_id': 272, 'config_version': 48}"
+      },
+      {
+        "batch_id": 34,
+        "operating_mode": "PRODUCTION",
+        "target_parts": 10,
+        "produced_total": 10,
+        "inspected_total": 10,
+        "accepted_total": 7,
+        "rejected_total": 3,
+        "batch_status": "COMPLETED",
+        "start_cmd_id": 2761,
+        "production_finished": 1,
+        "started_at": "2026-11-17T18:07:39.638+00:00",
+        "finished_at": "2026-11-17T18:08:03.555+00:00",
+        "abortion_reason": null
+      }
+    ],
+    "job_counts": [
+      {
+        "status": "CANCELLED",
+        "jobs": 39
+      },
+      {
+        "status": "COMPLETED",
+        "jobs": 239
+      },
+      {
+        "status": "UNRESOLVED",
+        "jobs": 4
+      }
+    ],
+    "part_count": 283,
+    "event_high_water": 7121
+  },
+  "new_sqlite_events": [],
+  "observed_receiver_decision": [
+    "INFO:     TCP RX {'schema_version': 1, 'msg_type': 'REJECTED', 'device_id': 2, 'session_id': 2198, 'ref_msg_type': 'INSPECT_PART', 'error_code': 'MISSING_FIELD', 'reason': 'MISSING_FIELD', 'seq': 38}"
+  ]
+}

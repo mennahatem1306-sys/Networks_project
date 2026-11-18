@@ -1,0 +1,177 @@
+INFO:     Started server process [22128]
+INFO:     Waiting for application startup.
+INFO:     2026-11-17T18:06:34.737+00:00 DUPLICATE_TEST armed for the first accepted inspection
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.181.17.167:8001 (Press CTRL+C to quit)
+INFO:     USB RX seq=664 {"schema_version":1,"device_id":1,"msg_type":"HELLO","boot_id":6,"device_state":"FAULT"}
+INFO:     USB TX seq=0 {"schema_version":1,"device_id":0,"session_id":2191,"msg_type":"SYNC_SESSION","cmd_id":2746,"target_device_id":1,"target_boot_id":6}
+INFO:     USB RX seq=0 {"schema_version":1,"device_id":1,"session_id":2191,"msg_type":"DELIVERY_ACK","cmd_id":2746,"ref_msg_type":"SYNC_SESSION"}
+INFO:     USB RX seq=1 {"schema_version":1,"device_id":1,"session_id":2191,"msg_type":"ACCEPTED","cmd_id":2746,"ref_msg_type":"SYNC_SESSION"}
+INFO:     USB RX seq=2 {"schema_version":1,"device_id":1,"session_id":2191,"msg_type":"COMPLETED","cmd_id":2746,"ref_msg_type":"SYNC_SESSION","result":"READY"}
+INFO:     ESP32 A READY on COM8
+INFO:     ESP32 B TCP connected from ('10.181.17.232', 55995)
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'HELLO', 'device_id': 2, 'boot_id': 30, 'device_state': 'SAFE_IDLE', 'seq': 0}
+INFO:     TCP TX seq=0 {"schema_version":1,"device_id":0,"session_id":2192,"msg_type":"SYNC_SESSION","cmd_id":2747,"target_device_id":2,"target_boot_id":30}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2192, 'ref_msg_type': 'SYNC_SESSION', 'cmd_id': 2747, 'seq': 1}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2192, 'ref_msg_type': 'SYNC_SESSION', 'cmd_id': 2747, 'seq': 2}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'COMPLETED', 'device_id': 2, 'session_id': 2192, 'ref_msg_type': 'SYNC_SESSION', 'cmd_id': 2747, 'result': 'READY', 'seq': 3}
+INFO:     ESP32 B READY
+INFO:     10.181.17.223:55207 - "WebSocket /ws/status" [accepted]
+INFO:     connection open
+INFO:     USB TX seq=13 {"schema_version":1,"msg_type":"SET_PRODUCTION_CONFIG","device_id":0,"session_id":2191,"cmd_id":2749,"parent_cmd_id":2748,"config_version":50,"cycle_time_ms":1000}
+INFO:     TCP TX seq=6 {"schema_version":1,"msg_type":"SET_INSPECTION_CONFIG","device_id":0,"session_id":2192,"cmd_id":2750,"parent_cmd_id":2748,"config_version":50,"inspection_time_ms":2000,"rule_n":3,"rule_k":0}
+INFO:     USB RX seq=14 {"schema_version":1,"device_id":1,"session_id":2191,"msg_type":"DELIVERY_ACK","cmd_id":2749,"ref_msg_type":"SET_PRODUCTION_CONFIG"}
+INFO:     USB RX seq=15 {"schema_version":1,"device_id":1,"session_id":2191,"msg_type":"ACCEPTED","cmd_id":2749,"ref_msg_type":"SET_PRODUCTION_CONFIG"}
+INFO:     USB RX seq=16 {"schema_version":1,"device_id":1,"session_id":2191,"msg_type":"COMPLETED","cmd_id":2749,"ref_msg_type":"SET_PRODUCTION_CONFIG","result":"CONFIG_APPLIED"}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2192, 'ref_msg_type': 'SET_INSPECTION_CONFIG', 'cmd_id': 2750, 'seq': 9}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2192, 'ref_msg_type': 'SET_INSPECTION_CONFIG', 'cmd_id': 2750, 'seq': 10}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'COMPLETED', 'device_id': 2, 'session_id': 2192, 'ref_msg_type': 'SET_INSPECTION_CONFIG', 'cmd_id': 2750, 'result': 'CONFIG_APPLIED', 'seq': 11}
+WARNING:  ESP32 B: Handshake or heartbeat timed out
+INFO:     Ignored message outside the current USB session: HEARTBEAT
+INFO:     Ignored message outside the current USB session: HEARTBEAT
+INFO:     Ignored message outside the current USB session: HEARTBEAT
+INFO:     USB RX seq=27 {"schema_version":1,"device_id":1,"session_id":2191,"msg_type":"ERROR","error_code":"TIMEOUT","reason":"Gateway heartbeat lost; old batch abandoned"}
+INFO:     Ignored message outside the current USB session: ERROR
+INFO:     USB RX seq=28 {"schema_version":1,"device_id":1,"msg_type":"HELLO","boot_id":6,"device_state":"FAULT"}
+INFO:     USB TX seq=0 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"SYNC_SESSION","cmd_id":2751,"target_device_id":1,"target_boot_id":6}
+INFO:     USB RX seq=0 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2751,"ref_msg_type":"SYNC_SESSION"}
+INFO:     USB RX seq=1 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2751,"ref_msg_type":"SYNC_SESSION"}
+INFO:     USB RX seq=2 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"COMPLETED","cmd_id":2751,"ref_msg_type":"SYNC_SESSION","result":"READY"}
+INFO:     ESP32 A READY on COM8
+INFO:     ESP32 B TCP connected from ('10.181.17.232', 56336)
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'HELLO', 'device_id': 2, 'boot_id': 31, 'device_state': 'SAFE_IDLE', 'seq': 0}
+INFO:     TCP TX seq=0 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"SYNC_SESSION","cmd_id":2752,"target_device_id":2,"target_boot_id":31}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'SYNC_SESSION', 'cmd_id': 2752, 'seq': 1}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'SYNC_SESSION', 'cmd_id': 2752, 'seq': 2}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'COMPLETED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'SYNC_SESSION', 'cmd_id': 2752, 'result': 'READY', 'seq': 3}
+INFO:     ESP32 B READY
+INFO:     USB TX seq=32 {"schema_version":1,"msg_type":"SET_PRODUCTION_CONFIG","device_id":0,"session_id":2193,"cmd_id":2755,"parent_cmd_id":2754,"config_version":51,"cycle_time_ms":1000}
+INFO:     TCP TX seq=20 {"schema_version":1,"msg_type":"SET_INSPECTION_CONFIG","device_id":0,"session_id":2194,"cmd_id":2756,"parent_cmd_id":2754,"config_version":51,"inspection_time_ms":2000,"rule_n":3,"rule_k":0}
+INFO:     USB RX seq=34 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2755,"ref_msg_type":"SET_PRODUCTION_CONFIG"}
+INFO:     USB RX seq=35 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2755,"ref_msg_type":"SET_PRODUCTION_CONFIG"}
+INFO:     USB RX seq=36 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"COMPLETED","cmd_id":2755,"ref_msg_type":"SET_PRODUCTION_CONFIG","result":"CONFIG_APPLIED"}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'SET_INSPECTION_CONFIG', 'cmd_id': 2756, 'seq': 22}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'SET_INSPECTION_CONFIG', 'cmd_id': 2756, 'seq': 23}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'COMPLETED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'SET_INSPECTION_CONFIG', 'cmd_id': 2756, 'result': 'CONFIG_APPLIED', 'seq': 24}
+INFO:     USB TX seq=43 {"schema_version":1,"msg_type":"SET_PRODUCTION_CONFIG","device_id":0,"session_id":2193,"cmd_id":2758,"parent_cmd_id":2757,"config_version":52,"cycle_time_ms":1000}
+INFO:     TCP TX seq=31 {"schema_version":1,"msg_type":"SET_INSPECTION_CONFIG","device_id":0,"session_id":2194,"cmd_id":2759,"parent_cmd_id":2757,"config_version":52,"inspection_time_ms":2000,"rule_n":3,"rule_k":0}
+INFO:     USB RX seq=47 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2758,"ref_msg_type":"SET_PRODUCTION_CONFIG"}
+INFO:     USB RX seq=48 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2758,"ref_msg_type":"SET_PRODUCTION_CONFIG"}
+INFO:     USB RX seq=49 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"COMPLETED","cmd_id":2758,"ref_msg_type":"SET_PRODUCTION_CONFIG","result":"CONFIG_APPLIED"}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'SET_INSPECTION_CONFIG', 'cmd_id': 2759, 'seq': 35}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'SET_INSPECTION_CONFIG', 'cmd_id': 2759, 'seq': 36}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'COMPLETED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'SET_INSPECTION_CONFIG', 'cmd_id': 2759, 'result': 'CONFIG_APPLIED', 'seq': 37}
+INFO:     USB TX seq=46 {"schema_version":1,"msg_type":"START_PRODUCTION","device_id":0,"session_id":2193,"cmd_id":2761,"parent_cmd_id":2760,"batch_id":34,"target_parts":10}
+INFO:     USB RX seq=52 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2761,"ref_msg_type":"START_PRODUCTION"}
+INFO:     USB RX seq=53 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2761,"ref_msg_type":"START_PRODUCTION"}
+INFO:     USB RX seq=54 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"COMPLETED","cmd_id":2761,"ref_msg_type":"START_PRODUCTION","result":"ARMED"}
+INFO:     USB TX seq=47 {"schema_version":1,"msg_type":"PRODUCTION_PERMIT","device_id":0,"session_id":2193,"cmd_id":2762,"batch_id":34,"part_id":277,"config_version":52}
+INFO:     USB RX seq=55 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2762,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=56 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2762,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=58 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"PART_PRODUCED","cmd_id":2762,"batch_id":34,"part_id":277,"config_version":52,"result":"PRODUCED"}
+INFO:     USB TX seq=49 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2762,"ref_msg_type":"PART_PRODUCED"}
+INFO:     TCP TX seq=34 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2194,"batch_id":34,"part_id":277,"job_id":276,"config_version":52}
+INFO:     USB TX seq=50 {"schema_version":1,"msg_type":"PRODUCTION_PERMIT","device_id":0,"session_id":2193,"cmd_id":2763,"batch_id":34,"part_id":278,"config_version":52}
+INFO:     USB RX seq=59 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2763,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=60 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2763,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 276, 'seq': 41}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 276, 'seq': 42}
+INFO:     2026-11-17T18:07:41.047+00:00 DUPLICATE_TEST replay INSPECT_PART job=276 seq=35
+INFO:     TCP TX seq=35 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2194,"batch_id":34,"part_id":277,"job_id":276,"config_version":52}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 276, 'seq': 43}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 276, 'seq': 44}
+INFO:     USB RX seq=62 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"PART_PRODUCED","cmd_id":2763,"batch_id":34,"part_id":278,"config_version":52,"result":"PRODUCED"}
+INFO:     USB TX seq=52 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2763,"ref_msg_type":"PART_PRODUCED"}
+INFO:     USB TX seq=53 {"schema_version":1,"msg_type":"PRODUCTION_PERMIT","device_id":0,"session_id":2193,"cmd_id":2764,"batch_id":34,"part_id":279,"config_version":52}
+INFO:     USB RX seq=63 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2764,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=64 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2764,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=66 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"PART_PRODUCED","cmd_id":2764,"batch_id":34,"part_id":279,"config_version":52,"result":"PRODUCED"}
+INFO:     USB TX seq=55 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2764,"ref_msg_type":"PART_PRODUCED"}
+INFO:     USB TX seq=56 {"schema_version":1,"msg_type":"PRODUCTION_PERMIT","device_id":0,"session_id":2193,"cmd_id":2765,"batch_id":34,"part_id":280,"config_version":52}
+INFO:     USB RX seq=67 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2765,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2194, 'batch_id': 34, 'job_id': 276, 'part_id': 277, 'config_version': 52, 'inspection_elapsed_ms': 2000, 'result': 'PASS', 'seq': 47}
+INFO:     TCP TX seq=38 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"DELIVERY_ACK","job_id":276,"ref_msg_type":"INSPECTION_RESULT"}
+INFO:     2026-11-17T18:07:43.104+00:00 DUPLICATE_TEST RESULT job=276 seq=47 before={'inspected_total': 0, 'accepted_total': 0, 'rejected_total': 0} after={'inspected_total': 1, 'accepted_total': 1, 'rejected_total': 0}
+INFO:     TCP TX seq=39 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2194,"batch_id":34,"part_id":278,"job_id":277,"config_version":52}
+INFO:     USB RX seq=68 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2765,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2194, 'batch_id': 34, 'job_id': 276, 'part_id': 277, 'config_version': 52, 'inspection_elapsed_ms': 2000, 'result': 'PASS', 'seq': 48}
+INFO:     TCP TX seq=40 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"DELIVERY_ACK","job_id":276,"ref_msg_type":"INSPECTION_RESULT"}
+INFO:     2026-11-17T18:07:43.161+00:00 DUPLICATE_TEST RESULT job=276 seq=48 before={'inspected_total': 1, 'accepted_total': 1, 'rejected_total': 0} after={'inspected_total': 1, 'accepted_total': 1, 'rejected_total': 0}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 277, 'seq': 49}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 277, 'seq': 50}
+INFO:     USB RX seq=70 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"PART_PRODUCED","cmd_id":2765,"batch_id":34,"part_id":280,"config_version":52,"result":"PRODUCED"}
+INFO:     USB TX seq=58 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2765,"ref_msg_type":"PART_PRODUCED"}
+INFO:     USB TX seq=59 {"schema_version":1,"msg_type":"PRODUCTION_PERMIT","device_id":0,"session_id":2193,"cmd_id":2766,"batch_id":34,"part_id":281,"config_version":52}
+INFO:     USB RX seq=71 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2766,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=72 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2766,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=74 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"PART_PRODUCED","cmd_id":2766,"batch_id":34,"part_id":281,"config_version":52,"result":"PRODUCED"}
+INFO:     USB TX seq=61 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2766,"ref_msg_type":"PART_PRODUCED"}
+INFO:     USB TX seq=62 {"schema_version":1,"msg_type":"PRODUCTION_PERMIT","device_id":0,"session_id":2193,"cmd_id":2767,"batch_id":34,"part_id":282,"config_version":52}
+INFO:     USB RX seq=75 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2767,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=76 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2767,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2194, 'batch_id': 34, 'job_id': 277, 'part_id': 278, 'config_version': 52, 'inspection_elapsed_ms': 2000, 'result': 'PASS', 'seq': 53}
+INFO:     TCP TX seq=43 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"DELIVERY_ACK","job_id":277,"ref_msg_type":"INSPECTION_RESULT"}
+INFO:     TCP TX seq=44 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2194,"batch_id":34,"part_id":279,"job_id":278,"config_version":52}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 278, 'seq': 55}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 278, 'seq': 56}
+INFO:     USB RX seq=78 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"PART_PRODUCED","cmd_id":2767,"batch_id":34,"part_id":282,"config_version":52,"result":"PRODUCED"}
+INFO:     USB TX seq=64 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2767,"ref_msg_type":"PART_PRODUCED"}
+INFO:     USB TX seq=65 {"schema_version":1,"msg_type":"PRODUCTION_PERMIT","device_id":0,"session_id":2193,"cmd_id":2768,"batch_id":34,"part_id":283,"config_version":52}
+INFO:     USB RX seq=79 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2768,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=80 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2768,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=82 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"PART_PRODUCED","cmd_id":2768,"batch_id":34,"part_id":283,"config_version":52,"result":"PRODUCED"}
+INFO:     USB TX seq=67 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2768,"ref_msg_type":"PART_PRODUCED"}
+INFO:     USB TX seq=68 {"schema_version":1,"msg_type":"PRODUCTION_PERMIT","device_id":0,"session_id":2193,"cmd_id":2769,"batch_id":34,"part_id":284,"config_version":52}
+INFO:     USB RX seq=83 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2769,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=84 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2769,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2194, 'batch_id': 34, 'job_id': 278, 'part_id': 279, 'config_version': 52, 'inspection_elapsed_ms': 2000, 'result': 'FAIL', 'seq': 59}
+INFO:     TCP TX seq=48 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"DELIVERY_ACK","job_id":278,"ref_msg_type":"INSPECTION_RESULT"}
+INFO:     TCP TX seq=49 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2194,"batch_id":34,"part_id":280,"job_id":279,"config_version":52}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 279, 'seq': 60}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 279, 'seq': 61}
+INFO:     USB RX seq=86 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"PART_PRODUCED","cmd_id":2769,"batch_id":34,"part_id":284,"config_version":52,"result":"PRODUCED"}
+INFO:     USB TX seq=70 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2769,"ref_msg_type":"PART_PRODUCED"}
+INFO:     USB TX seq=71 {"schema_version":1,"msg_type":"PRODUCTION_PERMIT","device_id":0,"session_id":2193,"cmd_id":2770,"batch_id":34,"part_id":285,"config_version":52}
+INFO:     USB RX seq=87 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2770,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=88 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2770,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=90 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"PART_PRODUCED","cmd_id":2770,"batch_id":34,"part_id":285,"config_version":52,"result":"PRODUCED"}
+INFO:     USB TX seq=73 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2770,"ref_msg_type":"PART_PRODUCED"}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2194, 'batch_id': 34, 'job_id': 279, 'part_id': 280, 'config_version': 52, 'inspection_elapsed_ms': 2000, 'result': 'PASS', 'seq': 64}
+INFO:     TCP TX seq=52 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"DELIVERY_ACK","job_id":279,"ref_msg_type":"INSPECTION_RESULT"}
+INFO:     TCP TX seq=53 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2194,"batch_id":34,"part_id":281,"job_id":280,"config_version":52}
+INFO:     USB TX seq=75 {"schema_version":1,"msg_type":"PRODUCTION_PERMIT","device_id":0,"session_id":2193,"cmd_id":2771,"batch_id":34,"part_id":286,"config_version":52}
+INFO:     USB RX seq=92 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2771,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     USB RX seq=93 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"ACCEPTED","cmd_id":2771,"ref_msg_type":"PRODUCTION_PERMIT"}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 280, 'seq': 65}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 280, 'seq': 66}
+INFO:     USB RX seq=95 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"PART_PRODUCED","cmd_id":2771,"batch_id":34,"part_id":286,"config_version":52,"result":"PRODUCED"}
+INFO:     USB TX seq=77 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2771,"ref_msg_type":"PART_PRODUCED"}
+INFO:     USB RX seq=96 {"schema_version":1,"device_id":1,"session_id":2193,"msg_type":"PRODUCTION_FINISHED","cmd_id":2761,"batch_id":34,"produced_total":10}
+INFO:     USB TX seq=78 {"schema_version":1,"device_id":0,"session_id":2193,"msg_type":"DELIVERY_ACK","cmd_id":2761,"ref_msg_type":"PRODUCTION_FINISHED"}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2194, 'batch_id': 34, 'job_id': 280, 'part_id': 281, 'config_version': 52, 'inspection_elapsed_ms': 2000, 'result': 'PASS', 'seq': 69}
+INFO:     TCP TX seq=56 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"DELIVERY_ACK","job_id":280,"ref_msg_type":"INSPECTION_RESULT"}
+INFO:     TCP TX seq=57 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2194,"batch_id":34,"part_id":282,"job_id":281,"config_version":52}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 281, 'seq': 70}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 281, 'seq': 71}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2194, 'batch_id': 34, 'job_id': 281, 'part_id': 282, 'config_version': 52, 'inspection_elapsed_ms': 2000, 'result': 'FAIL', 'seq': 74}
+INFO:     TCP TX seq=61 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"DELIVERY_ACK","job_id":281,"ref_msg_type":"INSPECTION_RESULT"}
+INFO:     TCP TX seq=62 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2194,"batch_id":34,"part_id":283,"job_id":282,"config_version":52}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 282, 'seq': 76}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 282, 'seq': 77}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2194, 'batch_id': 34, 'job_id': 282, 'part_id': 283, 'config_version': 52, 'inspection_elapsed_ms': 2000, 'result': 'PASS', 'seq': 80}
+INFO:     TCP TX seq=65 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"DELIVERY_ACK","job_id":282,"ref_msg_type":"INSPECTION_RESULT"}
+INFO:     TCP TX seq=66 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2194,"batch_id":34,"part_id":284,"job_id":283,"config_version":52}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 283, 'seq': 81}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 283, 'seq': 82}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2194, 'batch_id': 34, 'job_id': 283, 'part_id': 284, 'config_version': 52, 'inspection_elapsed_ms': 2000, 'result': 'PASS', 'seq': 85}
+INFO:     TCP TX seq=69 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"DELIVERY_ACK","job_id":283,"ref_msg_type":"INSPECTION_RESULT"}
+INFO:     TCP TX seq=70 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2194,"batch_id":34,"part_id":285,"job_id":284,"config_version":52}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 284, 'seq': 86}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 284, 'seq': 87}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2194, 'batch_id': 34, 'job_id': 284, 'part_id': 285, 'config_version': 52, 'inspection_elapsed_ms': 2000, 'result': 'FAIL', 'seq': 90}
+INFO:     TCP TX seq=73 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"DELIVERY_ACK","job_id":284,"ref_msg_type":"INSPECTION_RESULT"}
+INFO:     TCP TX seq=74 {"schema_version":1,"msg_type":"INSPECT_PART","device_id":0,"session_id":2194,"batch_id":34,"part_id":286,"job_id":285,"config_version":52}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'DELIVERY_ACK', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 285, 'seq': 91}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'ACCEPTED', 'device_id': 2, 'session_id': 2194, 'ref_msg_type': 'INSPECT_PART', 'job_id': 285, 'seq': 92}
+INFO:     TCP RX {'schema_version': 1, 'msg_type': 'INSPECTION_RESULT', 'device_id': 2, 'session_id': 2194, 'batch_id': 34, 'job_id': 285, 'part_id': 286, 'config_version': 52, 'inspection_elapsed_ms': 2000, 'result': 'PASS', 'seq': 95}
+INFO:     TCP TX seq=77 {"schema_version":1,"device_id":0,"session_id":2194,"msg_type":"DELIVERY_ACK","job_id":285,"ref_msg_type":"INSPECTION_RESULT"}

@@ -1,0 +1,7 @@
+﻿event_id,created_at,source,msg_type,stage,cmd_id,batch_id,part_id,job_id,session_id,result,error_code,retry_index,protocol,seq,payload
+1635,2026-11-17T14:17:40.686+00:00,Gateway,INSPECT_PART,DISPATCHING,,11,55,55,2141,,,,,,"{""batch_id"":11,""config_version"":14,""device_id"":0,""job_id"":55,""msg_type"":""INSPECT_PART"",""part_id"":55,""schema_version"":1,""session_id"":2141}"
+1636,2026-11-17T14:17:40.695+00:00,Gateway,INSPECT_PART,SENT,,11,55,55,2141,,,,TCP,1002,"{""batch_id"":11,""config_version"":14,""device_id"":0,""job_id"":55,""msg_type"":""INSPECT_PART"",""part_id"":55,""schema_version"":1,""session_id"":2141}"
+1644,2026-11-17T14:17:41.053+00:00,2,DELIVERY_ACK,DELIVERY_ACK,,,,55,2141,,,,TCP,1027,"{""device_id"":2,""job_id"":55,""msg_type"":""DELIVERY_ACK"",""ref_msg_type"":""INSPECT_PART"",""schema_version"":1,""seq"":1027,""session_id"":2141}"
+1645,2026-11-17T14:17:41.061+00:00,2,ACCEPTED,ACCEPTED,,,,55,2141,,,,TCP,1028,"{""device_id"":2,""job_id"":55,""msg_type"":""ACCEPTED"",""ref_msg_type"":""INSPECT_PART"",""schema_version"":1,""seq"":1028,""session_id"":2141}"
+1662,2026-11-17T14:17:42.031+00:00,2,INSPECTION_RESULT,COMPLETED,,11,55,55,2141,PASS,,,TCP,1030,"{""batch_id"":11,""config_version"":14,""device_id"":2,""inspection_elapsed_ms"":1000,""job_id"":55,""msg_type"":""INSPECTION_RESULT"",""part_id"":55,""result"":""PASS"",""schema_version"":1,""seq"":1030,""session_id"":2141}"
+1663,2026-11-17T14:17:42.032+00:00,Gateway,RESULT_AGE,FRESH,,11,55,55,,,,,,,"{""result_age_ms"":961}"

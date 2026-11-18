@@ -1,0 +1,2 @@
+config_version,target_parts,cycle_time_ms,inspection_time_ms,rule_n,rule_k,status,operator_cmd_id,created_at,applied_at,production_applied_at,inspection_applied_at
+58,10,1000,2000,3,0,ACTIVE,2795,2026-11-17T18:39:36.135+00:00,2026-11-17T18:39:36.252+00:00,2026-11-17T18:39:36.238+00:00,2026-11-17T18:39:36.252+00:00
